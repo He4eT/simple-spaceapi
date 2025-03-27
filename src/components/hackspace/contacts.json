@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_hackspace_contacts",
+  "info": {
+    "displayName": "Contacts",
+    "icon": "discuss",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "string"
+    },
+    "sip": {
+      "type": "string"
+    },
+    "irc": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "mastodon": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "identica": {
+      "type": "string"
+    },
+    "foursquare": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "ml": {
+      "type": "string"
+    },
+    "xmpp": {
+      "type": "string"
+    },
+    "issue_mail": {
+      "type": "string"
+    },
+    "gopher": {
+      "type": "string"
+    },
+    "matrix": {
+      "type": "string"
+    },
+    "mumble": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "hackspaces",
+  "info": {
+    "singularName": "hackspace",
+    "pluralName": "hackspaces",
+    "displayName": "Hackspace",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "space": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.contacts",
+      "required": true
+    }
+  }
+}
