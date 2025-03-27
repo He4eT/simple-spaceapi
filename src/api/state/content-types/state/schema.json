@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "states",
+  "info": {
+    "singularName": "state",
+    "pluralName": "states",
+    "displayName": "State",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "open": {
+      "type": "boolean",
+      "default": false
+    },
+    "lastchange": {
+      "type": "biginteger"
+    },
+    "trigger_person": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "component",
+      "repeatable": false,
+      "component": "state.state-icon"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_state_state_icons",
+  "info": {
+    "displayName": "State Icons",
+    "icon": "lock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "open": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "closed": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
