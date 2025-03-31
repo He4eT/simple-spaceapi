@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_hackspace_spacefeds",
+  "info": {
+    "displayName": "spacefed",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "spacenet": {
+      "type": "boolean",
+      "required": true
+    },
+    "spacesaml": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}
