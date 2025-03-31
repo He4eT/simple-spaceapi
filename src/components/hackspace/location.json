@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_hackspace_locations",
+  "info": {
+    "displayName": "location",
+    "icon": "pinMap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "decimal"
+    },
+    "lon": {
+      "type": "decimal"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "text"
+    },
+    "areas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "location.area"
+    }
+  }
+}

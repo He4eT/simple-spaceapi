@@ -32,6 +32,11 @@
       "repeatable": false,
       "component": "hackspace.contacts",
       "required": true
+    },
+    "location": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.location"
     }
   }
 }
