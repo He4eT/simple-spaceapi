@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_hackspace_keymasters",
+  "info": {
+    "displayName": "keymaster",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "irc_nick": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "xmpp": {
+      "type": "string"
+    },
+    "mastodon": {
+      "type": "string"
+    },
+    "matrix": {
+      "type": "string"
+    }
+  }
+}

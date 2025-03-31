@@ -1,7 +1,7 @@
 {
   "collectionName": "components_hackspace_contacts",
   "info": {
-    "displayName": "Contacts",
+    "displayName": "contacts",
     "icon": "discuss",
     "description": ""
   },
@@ -51,6 +51,11 @@
     },
     "mumble": {
       "type": "string"
+    },
+    "keymasters": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hackspace.keymaster"
     }
   }
 }
