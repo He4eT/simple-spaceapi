@@ -63,6 +63,18 @@ export interface HackspaceLocation extends Struct.ComponentSchema {
   };
 }
 
+export interface HackspaceSpacefed extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_spacefeds';
+  info: {
+    displayName: 'spacefed';
+    icon: 'globe';
+  };
+  attributes: {
+    spacenet: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    spacesaml: Schema.Attribute.Boolean & Schema.Attribute.Required;
+  };
+}
+
 export interface LocationArea extends Struct.ComponentSchema {
   collectionName: 'components_location_areas';
   info: {
@@ -95,6 +107,7 @@ declare module '@strapi/strapi' {
       'hackspace.contacts': HackspaceContacts;
       'hackspace.keymaster': HackspaceKeymaster;
       'hackspace.location': HackspaceLocation;
+      'hackspace.spacefed': HackspaceSpacefed;
       'location.area': LocationArea;
       'state.state-icon': StateStateIcon;
     }

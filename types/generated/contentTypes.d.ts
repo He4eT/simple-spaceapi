@@ -396,6 +396,7 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
     logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     space: Schema.Attribute.String & Schema.Attribute.Required;
+    spacefed: Schema.Attribute.Component<'hackspace.spacefed', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
