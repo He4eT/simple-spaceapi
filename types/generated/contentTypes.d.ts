@@ -392,6 +392,7 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
       'api::hackspace.hackspace'
     > &
       Schema.Attribute.Private;
+    location: Schema.Attribute.Component<'hackspace.location', false>;
     logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     space: Schema.Attribute.String & Schema.Attribute.Required;
