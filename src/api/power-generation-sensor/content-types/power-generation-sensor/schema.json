@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "power_generation_sensors",
+  "info": {
+    "singularName": "power-generation-sensor",
+    "pluralName": "power-generation-sensors",
+    "displayName": "Sensor: Power Generation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "W",
+        "VA"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

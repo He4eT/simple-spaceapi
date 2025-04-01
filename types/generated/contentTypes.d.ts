@@ -645,6 +645,40 @@ export interface ApiPowerConsumptionSensorPowerConsumptionSensor
   };
 }
 
+export interface ApiPowerGenerationSensorPowerGenerationSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'power_generation_sensors';
+  info: {
+    displayName: 'Sensor: Power Generation';
+    pluralName: 'power-generation-sensors';
+    singularName: 'power-generation-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::power-generation-sensor.power-generation-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<['W', 'VA']> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiRadiationSensorRadiationSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'radiation_sensors';
@@ -1281,6 +1315,7 @@ declare module '@strapi/strapi' {
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
       'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
+      'api::power-generation-sensor.power-generation-sensor': ApiPowerGenerationSensorPowerGenerationSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
