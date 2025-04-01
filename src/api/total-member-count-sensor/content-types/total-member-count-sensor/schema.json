@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "total_member_count_sensors",
+  "info": {
+    "singularName": "total-member-count-sensor",
+    "pluralName": "total-member-count-sensors",
+    "displayName": "Sensor: Total Member Count"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

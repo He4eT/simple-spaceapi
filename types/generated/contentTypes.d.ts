@@ -868,6 +868,39 @@ export interface ApiTemperatureSensorTemperatureSensor
   };
 }
 
+export interface ApiTotalMemberCountSensorTotalMemberCountSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'total_member_count_sensors';
+  info: {
+    displayName: 'Sensor: Total Member Count';
+    pluralName: 'total-member-count-sensors';
+    singularName: 'total-member-count-sensor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::total-member-count-sensor.total-member-count-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiWindSensorWindSensor extends Struct.CollectionTypeSchema {
   collectionName: 'wind_sensors';
   info: {
@@ -1425,6 +1458,7 @@ declare module '@strapi/strapi' {
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
+      'api::total-member-count-sensor.total-member-count-sensor': ApiTotalMemberCountSensorTotalMemberCountSensor;
       'api::wind-sensor.wind-sensor': ApiWindSensorWindSensor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
