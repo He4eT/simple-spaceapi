@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_network_traffic_properties",
+  "info": {
+    "displayName": "Traffic Properties",
+    "icon": "oneToOne"
+  },
+  "options": {},
+  "attributes": {
+    "bits_per_second": {
+      "displayName": "Bits per Second",
+      "type": "component",
+      "repeatable": false,
+      "component": "network.bits-per-second"
+    },
+    "packets_per_second": {
+      "type": "component",
+      "repeatable": false,
+      "component": "network.packets-per-second"
+    }
+  }
+}

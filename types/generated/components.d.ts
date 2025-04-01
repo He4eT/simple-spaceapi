@@ -198,6 +198,18 @@ export interface MembershipPlans extends Struct.ComponentSchema {
   };
 }
 
+export interface NetworkBitsPerSecond extends Struct.ComponentSchema {
+  collectionName: 'components_network_bits_per_seconds';
+  info: {
+    displayName: 'Bits per Second';
+    icon: 'oneToOne';
+  };
+  attributes: {
+    maximum: Schema.Attribute.BigInteger;
+    value: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+  };
+}
+
 export interface NetworkMachine extends Struct.ComponentSchema {
   collectionName: 'components_network_machines';
   info: {
@@ -207,6 +219,35 @@ export interface NetworkMachine extends Struct.ComponentSchema {
   attributes: {
     mac: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String;
+  };
+}
+
+export interface NetworkPacketsPerSecond extends Struct.ComponentSchema {
+  collectionName: 'components_network_packets_per_seconds';
+  info: {
+    displayName: 'Packets per Second';
+    icon: 'oneToOne';
+  };
+  attributes: {
+    value: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+  };
+}
+
+export interface NetworkTrafficProperties extends Struct.ComponentSchema {
+  collectionName: 'components_network_traffic_properties';
+  info: {
+    displayName: 'Traffic Properties';
+    icon: 'oneToOne';
+  };
+  attributes: {
+    bits_per_second: Schema.Attribute.Component<
+      'network.bits-per-second',
+      false
+    >;
+    packets_per_second: Schema.Attribute.Component<
+      'network.packets-per-second',
+      false
+    >;
   };
 }
 
@@ -295,7 +336,10 @@ declare module '@strapi/strapi' {
       'location.area': LocationArea;
       'location.person': LocationPerson;
       'membership.plans': MembershipPlans;
+      'network.bits-per-second': NetworkBitsPerSecond;
       'network.machine': NetworkMachine;
+      'network.packets-per-second': NetworkPacketsPerSecond;
+      'network.traffic-properties': NetworkTrafficProperties;
       'state.state-icon': StateStateIcon;
       'wind.direction': WindDirection;
       'wind.elevation': WindElevation;

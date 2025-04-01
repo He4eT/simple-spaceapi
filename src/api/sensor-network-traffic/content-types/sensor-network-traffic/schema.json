@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sensor_network_traffics",
+  "info": {
+    "singularName": "sensor-network-traffic",
+    "pluralName": "sensor-network-traffics",
+    "displayName": "Sensor: Network Traffic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "properties": {
+      "type": "component",
+      "repeatable": false,
+      "component": "network.traffic-properties",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

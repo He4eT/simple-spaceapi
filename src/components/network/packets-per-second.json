@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_network_packets_per_seconds",
+  "info": {
+    "displayName": "Packets per Second",
+    "icon": "oneToOne"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "biginteger",
+      "required": true
+    }
+  }
+}

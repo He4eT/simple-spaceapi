@@ -826,6 +826,44 @@ export interface ApiRadiationSensorRadiationSensor
   };
 }
 
+export interface ApiSensorNetworkTrafficSensorNetworkTraffic
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'sensor_network_traffics';
+  info: {
+    description: '';
+    displayName: 'Sensor: Network Traffic';
+    pluralName: 'sensor-network-traffics';
+    singularName: 'sensor-network-traffic';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sensor-network-traffic.sensor-network-traffic'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    properties: Schema.Attribute.Component<
+      'network.traffic-properties',
+      false
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStateState extends Struct.SingleTypeSchema {
   collectionName: 'states';
   info: {
@@ -1492,6 +1530,7 @@ declare module '@strapi/strapi' {
       'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
       'api::power-generation-sensor.power-generation-sensor': ApiPowerGenerationSensorPowerGenerationSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
+      'api::sensor-network-traffic.sensor-network-traffic': ApiSensorNetworkTrafficSensorNetworkTraffic;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'api::total-member-count-sensor.total-member-count-sensor': ApiTotalMemberCountSensorTotalMemberCountSensor;
