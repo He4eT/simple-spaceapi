@@ -1,8 +1,9 @@
 {
   "collectionName": "components_hackspace_keymasters",
   "info": {
-    "displayName": "keymaster",
-    "icon": "user"
+    "displayName": "Keymaster",
+    "icon": "user",
+    "description": ""
   },
   "options": {},
   "attributes": {

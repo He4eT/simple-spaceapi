@@ -1,8 +1,9 @@
 {
   "collectionName": "components_hackspace_spacefeds",
   "info": {
-    "displayName": "spacefed",
-    "icon": "globe"
+    "displayName": "Spacefed",
+    "icon": "globe",
+    "description": ""
   },
   "options": {},
   "attributes": {

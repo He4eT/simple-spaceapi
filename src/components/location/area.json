@@ -1,8 +1,9 @@
 {
   "collectionName": "components_location_areas",
   "info": {
-    "displayName": "area",
-    "icon": "layout"
+    "displayName": "Area",
+    "icon": "layout",
+    "description": ""
   },
   "options": {},
   "attributes": {
