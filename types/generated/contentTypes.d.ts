@@ -611,6 +611,40 @@ export interface ApiHumiditySensorHumiditySensor
   };
 }
 
+export interface ApiPowerConsumptionSensorPowerConsumptionSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'power_consumption_sensors';
+  info: {
+    displayName: 'Sensor: Power Consumption';
+    pluralName: 'power-consumption-sensors';
+    singularName: 'power-consumption-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::power-consumption-sensor.power-consumption-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<['W', 'VA']> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiRadiationSensorRadiationSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'radiation_sensors';
@@ -1246,6 +1280,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
+      'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;

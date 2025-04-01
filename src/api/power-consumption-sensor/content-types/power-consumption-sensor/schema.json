@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "power_consumption_sensors",
+  "info": {
+    "singularName": "power-consumption-sensor",
+    "pluralName": "power-consumption-sensors",
+    "displayName": "Sensor: Power Consumption"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "W",
+        "VA"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}
