@@ -369,6 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBarometerSensorBarometerSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'barometer_sensors';
+  info: {
+    displayName: 'Sensor: Barometer';
+    pluralName: 'barometer-sensors';
+    singularName: 'barometer-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::barometer-sensor.barometer-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<['hPa']> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiCarbondioxideSensorCarbondioxideSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'carbondioxide_sensors';
@@ -1092,6 +1126,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::barometer-sensor.barometer-sensor': ApiBarometerSensorBarometerSensor;
       'api::carbondioxide-sensor.carbondioxide-sensor': ApiCarbondioxideSensorCarbondioxideSensor;
       'api::door-locked-sensor.door-locked-sensor': ApiDoorLockedSensorDoorLockedSensor;
       'api::event.event': ApiEventEvent;

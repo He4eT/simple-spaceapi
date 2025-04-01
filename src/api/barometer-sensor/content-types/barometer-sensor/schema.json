@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "barometer_sensors",
+  "info": {
+    "singularName": "barometer-sensor",
+    "pluralName": "barometer-sensors",
+    "displayName": "Sensor: Barometer"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "hPa"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+}
+}
