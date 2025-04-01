@@ -67,6 +67,11 @@
       "type": "component",
       "repeatable": true,
       "component": "membership.plans"
+    },
+    "linked_spaces": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hackspace.linked-space"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_hackspace_linked_spaces",
+  "info": {
+    "displayName": "Linked Space",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "endpoint": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    }
+  }
+}
