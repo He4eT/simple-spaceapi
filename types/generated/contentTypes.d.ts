@@ -369,6 +369,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCarbondioxideSensorCarbondioxideSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'carbondioxide_sensors';
+  info: {
+    displayName: 'Sensor: CO2';
+    pluralName: 'carbondioxide-sensors';
+    singularName: 'carbondioxide-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::carbondioxide-sensor.carbondioxide-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<['ppm', 'vol%']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
@@ -1024,6 +1059,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::carbondioxide-sensor.carbondioxide-sensor': ApiCarbondioxideSensorCarbondioxideSensor;
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::state.state': ApiStateState;

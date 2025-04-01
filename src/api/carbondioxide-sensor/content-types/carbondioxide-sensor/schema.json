@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carbondioxide_sensors",
+  "info": {
+    "singularName": "carbondioxide-sensor",
+    "pluralName": "carbondioxide-sensors",
+    "displayName": "Sensor: CO2"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "ppm",
+        "vol%"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}
