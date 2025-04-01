@@ -155,6 +155,25 @@ export interface LocationArea extends Struct.ComponentSchema {
   };
 }
 
+export interface MembershipPlans extends Struct.ComponentSchema {
+  collectionName: 'components_membership_plans';
+  info: {
+    description: '';
+    displayName: 'Plan';
+    icon: 'briefcase';
+  };
+  attributes: {
+    billing_interval: Schema.Attribute.Enumeration<
+      ['yearly', 'quarterly', 'monthly', 'weekly', 'daily', 'hourly', 'other']
+    > &
+      Schema.Attribute.Required;
+    currency: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface StateStateIcon extends Struct.ComponentSchema {
   collectionName: 'components_state_state_icons';
   info: {
@@ -181,6 +200,7 @@ declare module '@strapi/strapi' {
       'hackspace.project': HackspaceProject;
       'hackspace.spacefed': HackspaceSpacefed;
       'location.area': LocationArea;
+      'membership.plans': MembershipPlans;
       'state.state-icon': StateStateIcon;
     }
   }

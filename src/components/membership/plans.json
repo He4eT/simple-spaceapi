@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_membership_plans",
+  "info": {
+    "displayName": "Plan",
+    "icon": "briefcase",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "currency": {
+      "type": "string",
+      "required": true
+    },
+    "billing_interval": {
+      "type": "enumeration",
+      "enum": [
+        "yearly",
+        "quarterly",
+        "monthly",
+        "weekly",
+        "daily",
+        "hourly",
+        "other"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
