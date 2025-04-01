@@ -104,6 +104,17 @@ export interface HackspaceLocation extends Struct.ComponentSchema {
   };
 }
 
+export interface HackspaceProject extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_projects';
+  info: {
+    displayName: 'Project';
+    icon: 'apps';
+  };
+  attributes: {
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface HackspaceSpacefed extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_spacefeds';
   info: {
@@ -153,6 +164,7 @@ declare module '@strapi/strapi' {
       'hackspace.feed-list': HackspaceFeedList;
       'hackspace.keymaster': HackspaceKeymaster;
       'hackspace.location': HackspaceLocation;
+      'hackspace.project': HackspaceProject;
       'hackspace.spacefed': HackspaceSpacefed;
       'location.area': LocationArea;
       'state.state-icon': StateStateIcon;

@@ -52,6 +52,11 @@
       "type": "component",
       "repeatable": false,
       "component": "hackspace.feed-list"
+    },
+    "projects": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hackspace.project"
     }
   }
 }

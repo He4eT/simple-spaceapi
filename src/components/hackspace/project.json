@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_hackspace_projects",
+  "info": {
+    "displayName": "Project",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
