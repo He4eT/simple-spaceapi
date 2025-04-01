@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "account_balance_sensors",
+  "info": {
+    "singularName": "account-balance-sensor",
+    "pluralName": "account-balance-sensors",
+    "displayName": "Sensor: Account Balance"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

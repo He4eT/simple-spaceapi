@@ -369,6 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccountBalanceSensorAccountBalanceSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'account_balance_sensors';
+  info: {
+    displayName: 'Sensor: Account Balance';
+    pluralName: 'account-balance-sensors';
+    singularName: 'account-balance-sensor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::account-balance-sensor.account-balance-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiBarometerSensorBarometerSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'barometer_sensors';
@@ -1377,6 +1411,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::account-balance-sensor.account-balance-sensor': ApiAccountBalanceSensorAccountBalanceSensor;
       'api::barometer-sensor.barometer-sensor': ApiBarometerSensorBarometerSensor;
       'api::beverage-supply.beverage-supply': ApiBeverageSupplyBeverageSupply;
       'api::carbondioxide-sensor.carbondioxide-sensor': ApiCarbondioxideSensorCarbondioxideSensor;
