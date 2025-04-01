@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_hackspace_cameras",
+  "info": {
+    "displayName": "Camera",
+    "icon": "eye",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
