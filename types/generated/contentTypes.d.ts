@@ -472,7 +472,8 @@ export interface ApiTemperatureSensorTemperatureSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'temperature_sensors';
   info: {
-    displayName: 'Temperature Sensor';
+    description: '';
+    displayName: 'Sensor: Temperature';
     pluralName: 'temperature-sensors';
     singularName: 'temperature-sensor';
   };

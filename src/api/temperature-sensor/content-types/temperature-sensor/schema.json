@@ -4,7 +4,8 @@
   "info": {
     "singularName": "temperature-sensor",
     "pluralName": "temperature-sensors",
-    "displayName": "Temperature Sensor"
+    "displayName": "Sensor: Temperature",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
