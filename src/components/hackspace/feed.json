@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_hackspace_feeds",
+  "info": {
+    "displayName": "Feed",
+    "icon": "cast"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
