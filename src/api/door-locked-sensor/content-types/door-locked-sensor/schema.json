@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "sensor_door_lockeds",
+  "collectionName": "door_locked_sensors",
   "info": {
-    "singularName": "sensor-door-locked",
-    "pluralName": "sensor-door-lockeds",
+    "singularName": "door-locked-sensor",
+    "pluralName": "door-locked-sensors",
     "displayName": "Sensor: Door Locked"
   },
   "options": {
@@ -27,5 +27,5 @@
     "lastchange": {
       "type": "biginteger"
     }
- }
+  }
 }

@@ -404,6 +404,39 @@ export interface ApiCarbondioxideSensorCarbondioxideSensor
   };
 }
 
+export interface ApiDoorLockedSensorDoorLockedSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'door_locked_sensors';
+  info: {
+    displayName: 'Sensor: Door Locked';
+    pluralName: 'door-locked-sensors';
+    singularName: 'door-locked-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::door-locked-sensor.door-locked-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Boolean & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
@@ -470,39 +503,6 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface ApiSensorDoorLockedSensorDoorLocked
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'sensor_door_lockeds';
-  info: {
-    displayName: 'Sensor: Door Locked';
-    pluralName: 'sensor-door-lockeds';
-    singularName: 'sensor-door-locked';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::sensor-door-locked.sensor-door-locked'
-    > &
-      Schema.Attribute.Private;
-    location: Schema.Attribute.String & Schema.Attribute.Required;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    value: Schema.Attribute.Boolean & Schema.Attribute.Required;
   };
 }
 
@@ -1093,9 +1093,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::carbondioxide-sensor.carbondioxide-sensor': ApiCarbondioxideSensorCarbondioxideSensor;
+      'api::door-locked-sensor.door-locked-sensor': ApiDoorLockedSensorDoorLockedSensor;
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
-      'api::sensor-door-locked.sensor-door-locked': ApiSensorDoorLockedSensorDoorLocked;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
