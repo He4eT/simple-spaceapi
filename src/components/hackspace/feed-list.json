@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_hackspace_feed_lists",
+  "info": {
+    "displayName": "Feed List",
+    "icon": "cast"
+  },
+  "options": {},
+  "attributes": {
+    "blog": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.feed"
+    },
+    "wiki": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.feed"
+    },
+    "calendar": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.feed"
+    },
+    "flickr": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hackspace.feed"
+    }
+  }
+}

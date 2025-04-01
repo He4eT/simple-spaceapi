@@ -41,6 +41,32 @@ export interface HackspaceContacts extends Struct.ComponentSchema {
   };
 }
 
+export interface HackspaceFeed extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_feeds';
+  info: {
+    displayName: 'Feed';
+    icon: 'cast';
+  };
+  attributes: {
+    type: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HackspaceFeedList extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_feed_lists';
+  info: {
+    displayName: 'Feed List';
+    icon: 'cast';
+  };
+  attributes: {
+    blog: Schema.Attribute.Component<'hackspace.feed', false>;
+    calendar: Schema.Attribute.Component<'hackspace.feed', false>;
+    flickr: Schema.Attribute.Component<'hackspace.feed', false>;
+    wiki: Schema.Attribute.Component<'hackspace.feed', false>;
+  };
+}
+
 export interface HackspaceKeymaster extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_keymasters';
   info: {
@@ -123,6 +149,8 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'hackspace.camera': HackspaceCamera;
       'hackspace.contacts': HackspaceContacts;
+      'hackspace.feed': HackspaceFeed;
+      'hackspace.feed-list': HackspaceFeedList;
       'hackspace.keymaster': HackspaceKeymaster;
       'hackspace.location': HackspaceLocation;
       'hackspace.spacefed': HackspaceSpacefed;
