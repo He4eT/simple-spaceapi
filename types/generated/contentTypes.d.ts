@@ -381,6 +381,7 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    cam: Schema.Attribute.Component<'hackspace.camera', true>;
     contact: Schema.Attribute.Component<'hackspace.contacts', false> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;

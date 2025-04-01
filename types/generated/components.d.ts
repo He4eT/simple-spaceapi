@@ -1,10 +1,24 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface HackspaceCamera extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_cameras';
+  info: {
+    description: '';
+    displayName: 'Camera';
+    icon: 'eye';
+  };
+  attributes: {
+    url: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+  };
+}
+
 export interface HackspaceContacts extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_contacts';
   info: {
     description: '';
-    displayName: 'contacts';
+    displayName: 'Contacts';
     icon: 'discuss';
   };
   attributes: {
@@ -30,7 +44,8 @@ export interface HackspaceContacts extends Struct.ComponentSchema {
 export interface HackspaceKeymaster extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_keymasters';
   info: {
-    displayName: 'keymaster';
+    description: '';
+    displayName: 'Keymaster';
     icon: 'user';
   };
   attributes: {
@@ -49,7 +64,7 @@ export interface HackspaceLocation extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_locations';
   info: {
     description: '';
-    displayName: 'location';
+    displayName: 'Location';
     icon: 'pinMap';
   };
   attributes: {
@@ -66,7 +81,8 @@ export interface HackspaceLocation extends Struct.ComponentSchema {
 export interface HackspaceSpacefed extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_spacefeds';
   info: {
-    displayName: 'spacefed';
+    description: '';
+    displayName: 'Spacefed';
     icon: 'globe';
   };
   attributes: {
@@ -78,7 +94,8 @@ export interface HackspaceSpacefed extends Struct.ComponentSchema {
 export interface LocationArea extends Struct.ComponentSchema {
   collectionName: 'components_location_areas';
   info: {
-    displayName: 'area';
+    description: '';
+    displayName: 'Area';
     icon: 'layout';
   };
   attributes: {
@@ -104,6 +121,7 @@ export interface StateStateIcon extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'hackspace.camera': HackspaceCamera;
       'hackspace.contacts': HackspaceContacts;
       'hackspace.keymaster': HackspaceKeymaster;
       'hackspace.location': HackspaceLocation;
