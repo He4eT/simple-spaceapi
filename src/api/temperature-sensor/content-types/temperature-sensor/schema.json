@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "temperature_sensors",
+  "info": {
+    "singularName": "temperature-sensor",
+    "pluralName": "temperature-sensors",
+    "displayName": "Temperature Sensor"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "°C",
+        "°F",
+        "K",
+        "°De",
+        "°N",
+        "°R",
+        "°Ré",
+        "°Rø"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

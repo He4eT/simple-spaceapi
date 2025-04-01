@@ -468,6 +468,52 @@ export interface ApiStateState extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiTemperatureSensorTemperatureSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'temperature_sensors';
+  info: {
+    displayName: 'Temperature Sensor';
+    pluralName: 'temperature-sensors';
+    singularName: 'temperature-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::temperature-sensor.temperature-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<
+      [
+        '\u00B0C',
+        '\u00B0F',
+        'K',
+        '\u00B0De',
+        '\u00B0N',
+        '\u00B0R',
+        '\u00B0R\u00E9',
+        '\u00B0R\u00F8',
+      ]
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -980,6 +1026,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::state.state': ApiStateState;
+      'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
