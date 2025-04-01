@@ -416,6 +416,7 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     feeds: Schema.Attribute.Component<'hackspace.feed-list', false>;
+    links: Schema.Attribute.Component<'hackspace.link', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

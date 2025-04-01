@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_hackspace_links",
+  "info": {
+    "displayName": "Link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -86,6 +86,19 @@ export interface HackspaceKeymaster extends Struct.ComponentSchema {
   };
 }
 
+export interface HackspaceLink extends Struct.ComponentSchema {
+  collectionName: 'components_hackspace_links';
+  info: {
+    displayName: 'Link';
+    icon: 'link';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface HackspaceLocation extends Struct.ComponentSchema {
   collectionName: 'components_hackspace_locations';
   info: {
@@ -163,6 +176,7 @@ declare module '@strapi/strapi' {
       'hackspace.feed': HackspaceFeed;
       'hackspace.feed-list': HackspaceFeedList;
       'hackspace.keymaster': HackspaceKeymaster;
+      'hackspace.link': HackspaceLink;
       'hackspace.location': HackspaceLocation;
       'hackspace.project': HackspaceProject;
       'hackspace.spacefed': HackspaceSpacefed;

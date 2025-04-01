@@ -57,6 +57,11 @@
       "type": "component",
       "repeatable": true,
       "component": "hackspace.project"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hackspace.link"
     }
   }
 }
