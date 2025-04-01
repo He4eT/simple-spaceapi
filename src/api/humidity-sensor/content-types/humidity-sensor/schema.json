@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "humidity_sensors",
+  "info": {
+    "singularName": "humidity-sensor",
+    "pluralName": "humidity-sensors",
+    "displayName": "Sensor: Humidity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "percents"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -540,6 +540,41 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHumiditySensorHumiditySensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'humidity_sensors';
+  info: {
+    displayName: 'Sensor: Humidity';
+    pluralName: 'humidity-sensors';
+    singularName: 'humidity-sensor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::humidity-sensor.humidity-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    unit: Schema.Attribute.Enumeration<['percents']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiRadiationSensorRadiationSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'radiation_sensors';
@@ -1173,6 +1208,7 @@ declare module '@strapi/strapi' {
       'api::door-locked-sensor.door-locked-sensor': ApiDoorLockedSensorDoorLockedSensor;
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
+      'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
