@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "beverage_supplies",
+  "info": {
+    "singularName": "beverage-supply",
+    "pluralName": "beverage-supplies",
+    "displayName": "Sensor: Beverage Supply",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "btl",
+        "crt"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}
