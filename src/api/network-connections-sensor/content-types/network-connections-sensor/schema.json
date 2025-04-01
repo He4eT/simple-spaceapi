@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "network_connections_sensors",
+  "info": {
+    "singularName": "network-connections-sensor",
+    "pluralName": "network-connections-sensors",
+    "displayName": "Sensor: Network Connections",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "wifi",
+        "cable",
+        "spacenet"
+      ]
+    },
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "machines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "network.machine"
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

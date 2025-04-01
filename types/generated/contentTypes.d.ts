@@ -611,6 +611,42 @@ export interface ApiHumiditySensorHumiditySensor
   };
 }
 
+export interface ApiNetworkConnectionsSensorNetworkConnectionsSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'network_connections_sensors';
+  info: {
+    description: '';
+    displayName: 'Sensor: Network Connections';
+    pluralName: 'network-connections-sensors';
+    singularName: 'network-connections-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::network-connections-sensor.network-connections-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    machines: Schema.Attribute.Component<'network.machine', true>;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<['wifi', 'cable', 'spacenet']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiPowerConsumptionSensorPowerConsumptionSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'power_consumption_sensors';
@@ -1348,6 +1384,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
+      'api::network-connections-sensor.network-connections-sensor': ApiNetworkConnectionsSensorNetworkConnectionsSensor;
       'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
       'api::power-generation-sensor.power-generation-sensor': ApiPowerGenerationSensorPowerGenerationSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;

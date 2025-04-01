@@ -186,6 +186,18 @@ export interface MembershipPlans extends Struct.ComponentSchema {
   };
 }
 
+export interface NetworkMachine extends Struct.ComponentSchema {
+  collectionName: 'components_network_machines';
+  info: {
+    displayName: 'Machine';
+    icon: 'oneToMany';
+  };
+  attributes: {
+    mac: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface StateStateIcon extends Struct.ComponentSchema {
   collectionName: 'components_state_state_icons';
   info: {
@@ -270,6 +282,7 @@ declare module '@strapi/strapi' {
       'hackspace.spacefed': HackspaceSpacefed;
       'location.area': LocationArea;
       'membership.plans': MembershipPlans;
+      'network.machine': NetworkMachine;
       'state.state-icon': StateStateIcon;
       'wind.direction': WindDirection;
       'wind.elevation': WindElevation;

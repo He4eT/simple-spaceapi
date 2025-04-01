@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_network_machines",
+  "info": {
+    "displayName": "Machine",
+    "icon": "oneToMany"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "mac": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
