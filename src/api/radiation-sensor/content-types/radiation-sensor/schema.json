@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "radiation_sensors",
+  "info": {
+    "singularName": "radiation-sensor",
+    "pluralName": "radiation-sensors",
+    "displayName": "Sensor: Radiation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "alpha",
+        "beta",
+        "gamma",
+        "beta_gamma"
+      ]
+    },
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "cpm",
+        "r/h",
+        "µSv/h",
+        "mSv/a",
+        "µSv/a"
+      ],
+      "required": true
+    },
+    "dead_time": {
+      "type": "decimal"
+    },
+    "conversion_factor": {
+      "type": "decimal"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}

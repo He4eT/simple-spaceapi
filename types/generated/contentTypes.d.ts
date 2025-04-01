@@ -540,6 +540,48 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiRadiationSensorRadiationSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'radiation_sensors';
+  info: {
+    displayName: 'Sensor: Radiation';
+    pluralName: 'radiation-sensors';
+    singularName: 'radiation-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    conversion_factor: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dead_time: Schema.Attribute.Decimal;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::radiation-sensor.radiation-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['alpha', 'beta', 'gamma', 'beta_gamma']
+    >;
+    unit: Schema.Attribute.Enumeration<
+      ['cpm', 'r/h', '\u00B5Sv/h', 'mSv/a', '\u00B5Sv/a']
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiStateState extends Struct.SingleTypeSchema {
   collectionName: 'states';
   info: {
@@ -1131,6 +1173,7 @@ declare module '@strapi/strapi' {
       'api::door-locked-sensor.door-locked-sensor': ApiDoorLockedSensorDoorLockedSensor;
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
+      'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
