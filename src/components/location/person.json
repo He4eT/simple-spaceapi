@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_location_people",
+  "info": {
+    "displayName": "Person",
+    "icon": "emotionHappy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

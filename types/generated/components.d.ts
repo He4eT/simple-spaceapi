@@ -167,6 +167,18 @@ export interface LocationArea extends Struct.ComponentSchema {
   };
 }
 
+export interface LocationPerson extends Struct.ComponentSchema {
+  collectionName: 'components_location_people';
+  info: {
+    description: '';
+    displayName: 'Person';
+    icon: 'emotionHappy';
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface MembershipPlans extends Struct.ComponentSchema {
   collectionName: 'components_membership_plans';
   info: {
@@ -281,6 +293,7 @@ declare module '@strapi/strapi' {
       'hackspace.project': HackspaceProject;
       'hackspace.spacefed': HackspaceSpacefed;
       'location.area': LocationArea;
+      'location.person': LocationPerson;
       'membership.plans': MembershipPlans;
       'network.machine': NetworkMachine;
       'state.state-icon': StateStateIcon;

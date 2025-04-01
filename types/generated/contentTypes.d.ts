@@ -681,6 +681,41 @@ export interface ApiNetworkConnectionsSensorNetworkConnectionsSensor
   };
 }
 
+export interface ApiPeopleNowPresentSensorPeopleNowPresentSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'people_now_present_sensors';
+  info: {
+    description: '';
+    displayName: 'Sensor: People Now Present';
+    pluralName: 'people-now-present-sensors';
+    singularName: 'people-now-present-sensor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::people-now-present-sensor.people-now-present-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    names: Schema.Attribute.Component<'location.person', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiPowerConsumptionSensorPowerConsumptionSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'power_consumption_sensors';
@@ -1453,6 +1488,7 @@ declare module '@strapi/strapi' {
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
       'api::network-connections-sensor.network-connections-sensor': ApiNetworkConnectionsSensorNetworkConnectionsSensor;
+      'api::people-now-present-sensor.people-now-present-sensor': ApiPeopleNowPresentSensorPeopleNowPresentSensor;
       'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
       'api::power-generation-sensor.power-generation-sensor': ApiPowerGenerationSensorPowerGenerationSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "people_now_present_sensors",
+  "info": {
+    "singularName": "people-now-present-sensor",
+    "pluralName": "people-now-present-sensors",
+    "displayName": "Sensor: People Now Present",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "names": {
+      "type": "component",
+      "repeatable": true,
+      "component": "location.person"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+  }
+}
