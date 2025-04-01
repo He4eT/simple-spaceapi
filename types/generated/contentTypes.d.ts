@@ -473,6 +473,39 @@ export interface ApiHackspaceHackspace extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiSensorDoorLockedSensorDoorLocked
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'sensor_door_lockeds';
+  info: {
+    displayName: 'Sensor: Door Locked';
+    pluralName: 'sensor-door-lockeds';
+    singularName: 'sensor-door-locked';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sensor-door-locked.sensor-door-locked'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Boolean & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiStateState extends Struct.SingleTypeSchema {
   collectionName: 'states';
   info: {
@@ -1062,6 +1095,7 @@ declare module '@strapi/strapi' {
       'api::carbondioxide-sensor.carbondioxide-sensor': ApiCarbondioxideSensorCarbondioxideSensor;
       'api::event.event': ApiEventEvent;
       'api::hackspace.hackspace': ApiHackspaceHackspace;
+      'api::sensor-door-locked.sensor-door-locked': ApiSensorDoorLockedSensorDoorLocked;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'plugin::content-releases.release': PluginContentReleasesRelease;

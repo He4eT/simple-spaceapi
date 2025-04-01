@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sensor_door_lockeds",
+  "info": {
+    "singularName": "sensor-door-locked",
+    "pluralName": "sensor-door-lockeds",
+    "displayName": "Sensor: Door Locked"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "boolean",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    }
+ }
+}
