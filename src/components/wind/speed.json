@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_wind_speeds",
+  "info": {
+    "displayName": "Speed",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "m/s",
+        "km/h",
+        "kn"
+      ],
+      "required": true
+    }
+  }
+}

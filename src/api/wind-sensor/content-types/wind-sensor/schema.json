@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wind_sensors",
+  "info": {
+    "singularName": "wind-sensor",
+    "pluralName": "wind-sensors",
+    "displayName": "Sensor: Wind",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "lastchange": {
+      "type": "biginteger"
+    },
+    "properties": {
+      "displayName": "Properties",
+      "type": "component",
+      "repeatable": false,
+      "component": "wind.properties",
+      "required": true
+    }
+  }
+}

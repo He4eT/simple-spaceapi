@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_wind_properties",
+  "info": {
+    "displayName": "Properties",
+    "icon": "feather",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "speed": {
+      "displayName": "Speed",
+      "type": "component",
+      "repeatable": false,
+      "component": "wind.speed",
+      "required": true
+    },
+    "gust": {
+      "type": "component",
+      "repeatable": false,
+      "component": "wind.speed",
+      "required": true
+    },
+    "direction": {
+      "displayName": "Direction",
+      "type": "component",
+      "repeatable": false,
+      "component": "wind.direction",
+      "required": true
+    },
+    "elevation": {
+      "displayName": "Elevation",
+      "type": "component",
+      "repeatable": false,
+      "component": "wind.elevation",
+      "required": true
+    }
+  }
+}

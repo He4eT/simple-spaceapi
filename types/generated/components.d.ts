@@ -199,6 +199,62 @@ export interface StateStateIcon extends Struct.ComponentSchema {
   };
 }
 
+export interface WindDirection extends Struct.ComponentSchema {
+  collectionName: 'components_wind_directions';
+  info: {
+    displayName: 'Direction';
+    icon: 'feather';
+  };
+  attributes: {
+    unit: Schema.Attribute.Enumeration<['Degree']> & Schema.Attribute.Required;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
+export interface WindElevation extends Struct.ComponentSchema {
+  collectionName: 'components_wind_elevations';
+  info: {
+    displayName: 'Elevation';
+    icon: 'feather';
+  };
+  attributes: {
+    unit: Schema.Attribute.Enumeration<['m']> & Schema.Attribute.Required;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
+export interface WindProperties extends Struct.ComponentSchema {
+  collectionName: 'components_wind_properties';
+  info: {
+    description: '';
+    displayName: 'Properties';
+    icon: 'feather';
+  };
+  attributes: {
+    direction: Schema.Attribute.Component<'wind.direction', false> &
+      Schema.Attribute.Required;
+    elevation: Schema.Attribute.Component<'wind.elevation', false> &
+      Schema.Attribute.Required;
+    gust: Schema.Attribute.Component<'wind.speed', false> &
+      Schema.Attribute.Required;
+    speed: Schema.Attribute.Component<'wind.speed', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface WindSpeed extends Struct.ComponentSchema {
+  collectionName: 'components_wind_speeds';
+  info: {
+    displayName: 'Speed';
+    icon: 'cursor';
+  };
+  attributes: {
+    unit: Schema.Attribute.Enumeration<['m/s', 'km/h', 'kn']> &
+      Schema.Attribute.Required;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -215,6 +271,10 @@ declare module '@strapi/strapi' {
       'location.area': LocationArea;
       'membership.plans': MembershipPlans;
       'state.state-icon': StateStateIcon;
+      'wind.direction': WindDirection;
+      'wind.elevation': WindElevation;
+      'wind.properties': WindProperties;
+      'wind.speed': WindSpeed;
     }
   }
 }

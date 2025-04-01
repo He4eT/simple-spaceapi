@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_wind_directions",
+  "info": {
+    "displayName": "Direction",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "Degree"
+      ],
+      "required": true
+    }
+  }
+}

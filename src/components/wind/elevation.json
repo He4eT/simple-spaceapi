@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_wind_elevations",
+  "info": {
+    "displayName": "Elevation",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "m"
+      ],
+      "required": true
+    }
+  }
+}
