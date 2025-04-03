@@ -228,6 +228,16 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     /* */
 
+    if (!isEmpty(hackspace.linked_spaces)) {
+      result.linked_spaces = hackspace.linked_spaces
+        .map(pickFields([
+          'endpoint',
+          'website',
+        ]));
+    }
+
+    /* */
+
     return ctx.send(result);
   },
 });
