@@ -204,6 +204,17 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     /* */
 
+    if (!isEmpty(hackspace.links)) {
+      result.links = hackspace.links
+        .map(pickFields([
+          'name',
+          'description',
+          'url',
+        ]))
+    }
+
+    /* */
+
     return ctx.send(result);
   },
 });
