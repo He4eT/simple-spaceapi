@@ -210,7 +210,20 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           'name',
           'description',
           'url',
-        ]))
+        ]));
+    }
+
+    /* */
+
+    if (!isEmpty(hackspace.membership_plans)) {
+      result.membership_plans = hackspace.membership_plans
+        .map(pickFields([
+          'name',
+          'value',
+          'currency',
+          'billing_interval',
+          'description',
+        ]));
     }
 
     /* */
