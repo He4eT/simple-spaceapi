@@ -38,6 +38,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'contact',
         'contact.keymasters',
         'feeds',
+        'feeds.blog',
+        'feeds.wiki',
+        'feeds.calendar',
+        'feeds.flickr',
         'projects',
         'links',
         'membership_plans',
@@ -166,6 +170,29 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
             'matrix',
           ]));
       }
+    }
+
+    /* */
+
+    /* Sensors */
+
+    /* */
+
+    if (!isEmpty(hackspace.feeds)) {
+      const feeds = pickFields([
+        'blog',
+        'wiki',
+        'calendar',
+        'flickr',
+      ])(hackspace.feeds);
+
+      result.feeds = Object.fromEntries(
+        Object.entries(feeds)
+          .map(([k, v]) => [k, pickFields([
+            'type',
+            'url',
+          ])(v)])
+      );
     }
 
     /* */
