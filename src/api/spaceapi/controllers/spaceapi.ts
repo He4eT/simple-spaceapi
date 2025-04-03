@@ -197,6 +197,13 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     /* */
 
+    if (!isEmpty(hackspace.projects)) {
+      result.projects = hackspace.projects
+        .map(({url}) => url);
+    }
+
+    /* */
+
     return ctx.send(result);
   },
 });
