@@ -380,28 +380,23 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'properties.bits_per_second',
         'properties.packets_per_second',
       ],
-    )).map((sensor: { properties: {
-      bits_per_second: any,
-      packets_per_second: any,
-    } }) => {
+    )).map((sensor: {properties: {bits_per_second: any, packets_per_second: any}}) => {
       const { properties, ...rest } = sensor;
 
-      const cleanProperties = isEmpty(properties)
-        ? []
-        : Object.entries(pickFields([
-          'bits_per_second',
-          'packets_per_second',
-        ])(properties))
-        .map(([k, v]) => [k, {
-          'bits_per_second': pickFields(['value', 'maximum']),
-          'packets_per_second': pickFields(['value']),
-        }[k](v)]);
+      const propertiesEntries = Object.entries(pickFields([
+        'bits_per_second',
+        'packets_per_second',
+      ])(properties))
+      .map(([k, v]) => [k, {
+        'bits_per_second': pickFields(['value', 'maximum']),
+        'packets_per_second': pickFields(['value']),
+      }[k](v)]);
 
       return {
         ...rest,
-        ...(isEmpty(cleanProperties)
+        ...(isEmpty(propertiesEntries)
           ? {}
-          : { properties: Object.fromEntries(cleanProperties) }
+          : { properties: Object.fromEntries(propertiesEntries) }
         ),
       };
     });
