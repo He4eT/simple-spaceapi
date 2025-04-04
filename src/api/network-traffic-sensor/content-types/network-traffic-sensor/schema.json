@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "sensor_network_traffics",
+  "collectionName": "network_traffic_sensors",
   "info": {
-    "singularName": "sensor-network-traffic",
-    "pluralName": "sensor-network-traffics",
+    "singularName": "network-traffic-sensor",
+    "pluralName": "network-traffic-sensors",
     "displayName": "Sensor: Network Traffic",
     "description": ""
   },

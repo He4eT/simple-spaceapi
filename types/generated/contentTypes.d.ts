@@ -681,6 +681,44 @@ export interface ApiNetworkConnectionsSensorNetworkConnectionsSensor
   };
 }
 
+export interface ApiNetworkTrafficSensorNetworkTrafficSensor
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'network_traffic_sensors';
+  info: {
+    description: '';
+    displayName: 'Sensor: Network Traffic';
+    pluralName: 'network-traffic-sensors';
+    singularName: 'network-traffic-sensor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    lastchange: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::network-traffic-sensor.network-traffic-sensor'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    properties: Schema.Attribute.Component<
+      'network.traffic-properties',
+      false
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPeopleNowPresentSensorPeopleNowPresentSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'people_now_present_sensors';
@@ -823,44 +861,6 @@ export interface ApiRadiationSensorRadiationSensor
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     value: Schema.Attribute.Decimal & Schema.Attribute.Required;
-  };
-}
-
-export interface ApiSensorNetworkTrafficSensorNetworkTraffic
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'sensor_network_traffics';
-  info: {
-    description: '';
-    displayName: 'Sensor: Network Traffic';
-    pluralName: 'sensor-network-traffics';
-    singularName: 'sensor-network-traffic';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::sensor-network-traffic.sensor-network-traffic'
-    > &
-      Schema.Attribute.Private;
-    location: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    properties: Schema.Attribute.Component<
-      'network.traffic-properties',
-      false
-    > &
-      Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -1526,11 +1526,11 @@ declare module '@strapi/strapi' {
       'api::hackspace.hackspace': ApiHackspaceHackspace;
       'api::humidity-sensor.humidity-sensor': ApiHumiditySensorHumiditySensor;
       'api::network-connections-sensor.network-connections-sensor': ApiNetworkConnectionsSensorNetworkConnectionsSensor;
+      'api::network-traffic-sensor.network-traffic-sensor': ApiNetworkTrafficSensorNetworkTrafficSensor;
       'api::people-now-present-sensor.people-now-present-sensor': ApiPeopleNowPresentSensorPeopleNowPresentSensor;
       'api::power-consumption-sensor.power-consumption-sensor': ApiPowerConsumptionSensorPowerConsumptionSensor;
       'api::power-generation-sensor.power-generation-sensor': ApiPowerGenerationSensorPowerGenerationSensor;
       'api::radiation-sensor.radiation-sensor': ApiRadiationSensorRadiationSensor;
-      'api::sensor-network-traffic.sensor-network-traffic': ApiSensorNetworkTrafficSensorNetworkTraffic;
       'api::state.state': ApiStateState;
       'api::temperature-sensor.temperature-sensor': ApiTemperatureSensorTemperatureSensor;
       'api::total-member-count-sensor.total-member-count-sensor': ApiTotalMemberCountSensorTotalMemberCountSensor;
