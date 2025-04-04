@@ -309,14 +309,16 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'machines',
       ],
-    )).map((connection: {machines: Array<{name?: string, mac?: string}>}) => {
-      if (!isEmpty(connection.machines)) {
-        connection.machines = connection.machines.map(pickFields([
+    )).map((sensor: {machines: Array<{name?: string, mac?: string}>}) => {
+      if (!isEmpty(sensor.machines)) {
+        sensor.machines = sensor.machines.map(pickFields([
           'name',
           'mac',
         ]));
+      } else {
+        delete sensor.machines;
       }
-      return connection;
+      return sensor;
     });
 
     const accountBalanceSensors = await getSensors(
@@ -355,10 +357,9 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ],
     );
 
-    const networkTrafficSensors = await getSensors(
+    const networkTrafficSensors = (await getSensors(
       'api::network-traffic-sensor.network-traffic-sensor',
       [
-        'TODO',
         'properties',
         'value',
         'location',
@@ -367,7 +368,34 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'description',
         'lastchange',
       ],
-    );
+      [
+        'properties.bits_per_second',
+        'properties.packets_per_second',
+      ],
+    )).map((sensor: {properties: {bits_per_second: any, packets_per_second: any}}) => {
+      if (!isEmpty(sensor.properties)) {
+        delete sensor.properties['id'];
+        if (!isEmpty(sensor.properties.bits_per_second)) {
+          sensor.properties.bits_per_second = pickFields([
+            'value',
+            'maximum',
+          ])(sensor.properties.bits_per_second);
+        } else {
+          delete sensor.properties.bits_per_second;
+        }
+
+        if (!isEmpty(sensor.properties.packets_per_second)) {
+          sensor.properties.packets_per_second = pickFields([
+            'value',
+          ])(sensor.properties.packets_per_second);
+        } else {
+          delete sensor.properties.packets_per_second;
+        }
+      } else {
+        delete sensor.properties;
+      }
+      return sensor;
+    });
 
     const sensors = {
       temperature: temperatureSensors,
