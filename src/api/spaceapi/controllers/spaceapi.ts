@@ -243,10 +243,11 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'lastchange',
       ],
     )).map((sensor: {unit: string}) => {
-      if (sensor.unit === 'percents') {
-        sensor.unit = '%';
-      }
-      return sensor;
+      const { unit, ...rest } = sensor;
+      return {
+        ...rest,
+        unit: unit === 'percents' ? '%' : unit,
+      };
     });
 
     const beverageSupplySensors = await getSensors(
