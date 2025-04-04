@@ -4,7 +4,8 @@
   "info": {
     "singularName": "carbondioxide-sensor",
     "pluralName": "carbondioxide-sensors",
-    "displayName": "Sensor: CO2"
+    "displayName": "Sensor: CO2",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -31,9 +32,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "lastchange": {
-      "type": "biginteger"
     }
   }
 }

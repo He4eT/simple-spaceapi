@@ -4,7 +4,8 @@
   "info": {
     "singularName": "power-generation-sensor",
     "pluralName": "power-generation-sensors",
-    "displayName": "Sensor: Power Generation"
+    "displayName": "Sensor: Power Generation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -31,9 +32,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "lastchange": {
-      "type": "biginteger"
     }
   }
 }

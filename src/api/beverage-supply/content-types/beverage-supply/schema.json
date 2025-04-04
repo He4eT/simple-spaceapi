@@ -31,9 +31,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "lastchange": {
-      "type": "biginteger"
     }
   }
 }

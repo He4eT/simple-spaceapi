@@ -4,7 +4,8 @@
   "info": {
     "singularName": "power-consumption-sensor",
     "pluralName": "power-consumption-sensors",
-    "displayName": "Sensor: Power Consumption"
+    "displayName": "Sensor: Power Consumption",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -31,9 +32,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "lastchange": {
-      "type": "biginteger"
     }
   }
 }

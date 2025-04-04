@@ -4,7 +4,8 @@
   "info": {
     "singularName": "radiation-sensor",
     "pluralName": "radiation-sensors",
-    "displayName": "Sensor: Radiation"
+    "displayName": "Sensor: Radiation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -49,9 +50,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "lastchange": {
-      "type": "biginteger"
     }
   }
 }

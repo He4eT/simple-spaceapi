@@ -21,9 +21,6 @@
     "description": {
       "type": "text"
     },
-    "lastchange": {
-      "type": "biginteger"
-    },
     "properties": {
       "displayName": "Properties",
       "type": "component",

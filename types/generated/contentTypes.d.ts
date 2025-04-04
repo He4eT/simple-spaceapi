@@ -386,7 +386,6 @@ export interface ApiAccountBalanceSensorAccountBalanceSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -408,6 +407,7 @@ export interface ApiBarometerSensorBarometerSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'barometer_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Barometer';
     pluralName: 'barometer-sensors';
     singularName: 'barometer-sensor';
@@ -420,7 +420,6 @@ export interface ApiBarometerSensorBarometerSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -455,7 +454,6 @@ export interface ApiBeverageSupplyBeverageSupply
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -478,6 +476,7 @@ export interface ApiCarbondioxideSensorCarbondioxideSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'carbondioxide_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: CO2';
     pluralName: 'carbondioxide-sensors';
     singularName: 'carbondioxide-sensor';
@@ -490,7 +489,6 @@ export interface ApiCarbondioxideSensorCarbondioxideSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -513,6 +511,7 @@ export interface ApiDoorLockedSensorDoorLockedSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'door_locked_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Door Locked';
     pluralName: 'door-locked-sensors';
     singularName: 'door-locked-sensor';
@@ -525,7 +524,6 @@ export interface ApiDoorLockedSensorDoorLockedSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -628,7 +626,6 @@ export interface ApiHumiditySensorHumiditySensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -664,7 +661,6 @@ export interface ApiNetworkConnectionsSensorNetworkConnectionsSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -700,7 +696,6 @@ export interface ApiNetworkTrafficSensorNetworkTrafficSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -738,7 +733,6 @@ export interface ApiPeopleNowPresentSensorPeopleNowPresentSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -760,6 +754,7 @@ export interface ApiPowerConsumptionSensorPowerConsumptionSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'power_consumption_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Power Consumption';
     pluralName: 'power-consumption-sensors';
     singularName: 'power-consumption-sensor';
@@ -772,7 +767,6 @@ export interface ApiPowerConsumptionSensorPowerConsumptionSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -794,6 +788,7 @@ export interface ApiPowerGenerationSensorPowerGenerationSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'power_generation_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Power Generation';
     pluralName: 'power-generation-sensors';
     singularName: 'power-generation-sensor';
@@ -806,7 +801,6 @@ export interface ApiPowerGenerationSensorPowerGenerationSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -828,6 +822,7 @@ export interface ApiRadiationSensorRadiationSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'radiation_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Radiation';
     pluralName: 'radiation-sensors';
     singularName: 'radiation-sensor';
@@ -842,7 +837,6 @@ export interface ApiRadiationSensorRadiationSensor
       Schema.Attribute.Private;
     dead_time: Schema.Attribute.Decimal;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -912,7 +906,6 @@ export interface ApiTemperatureSensorTemperatureSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -959,7 +952,6 @@ export interface ApiTotalMemberCountSensorTotalMemberCountSensor
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -992,7 +984,6 @@ export interface ApiWindSensorWindSensor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    lastchange: Schema.Attribute.BigInteger;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
