@@ -355,7 +355,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'names',
       ],
-    )).map((sensor: { names: Array<any> }) => {
+    )).map((sensor: { names: Array<{name: string}> }) => {
       const { names, ...rest } = sensor;
       return {
         ...rest,
@@ -380,7 +380,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'properties.bits_per_second',
         'properties.packets_per_second',
       ],
-    )).map((sensor: {properties: {bits_per_second: any, packets_per_second: any}}) => {
+    )).map((sensor: {properties: {bits_per_second: number, packets_per_second: number}}) => {
       const { properties, ...rest } = sensor;
 
       const propertiesEntries = Object.entries(pickFields([
