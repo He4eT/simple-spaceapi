@@ -15,7 +15,7 @@ const pickFields = (fields: Array<string>) => (obj: Record<string, unknown>): ob
 const dateTimeToUnixtime = (updatedAt: string) => {
   const date = new Date(updatedAt);
   return Math.floor(date.getTime() / 1000);
-}
+};
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async index(ctx: Context) {
@@ -444,11 +444,11 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       total_member_count: totalMemberCountSensors,
       people_now_present: peopleNowPresentSensors,
       network_traffic: networkTrafficSensors,
-    }
+    };
 
 
     if (Object.entries(sensors).some(([_, sensor]) => !isEmpty(sensor))) {
-      result.sensors = pickFields(Object.keys(sensors))(sensors)
+      result.sensors = pickFields(Object.keys(sensors))(sensors);
     }
 
     /* */
