@@ -1,4 +1,4 @@
-import type { Core } from '@strapi/strapi';
+import type { Core, UID } from '@strapi/strapi';
 import type { Context } from 'koa';
 
 const isEmpty = <A>(x: A): boolean => x == null
@@ -47,8 +47,6 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'membership_plans',
         'linked_spaces',
       ]});
-    console.log(hackspace)
-    console.log(hackspace.location.areas)
 
     result.api_compatibility = ['15'];
     result.space = hackspace.space;
@@ -174,7 +172,226 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     /* */
 
-    /* Sensors */
+    const getSensors = (query: UID.ContentType, fields: Array<string>, populate = []) =>
+      strapi.documents(query)
+      .findMany({ populate })
+      .then((sensors) => sensors
+        .map((sensor) => ({
+          ...sensor,
+          lastchange: dateTimeToUnixtime(String(sensor.updatedAt)),
+        }))
+        .map(pickFields(fields))
+      );
+
+    const temperatureSensors = await getSensors(
+      'api::temperature-sensor.temperature-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const carbondioxideSensors = await getSensors(
+      'api::carbondioxide-sensor.carbondioxide-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const doorLockedSensors = await getSensors(
+      'api::door-locked-sensor.door-locked-sensor',
+      [
+        'value',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const barometerSensors = await getSensors(
+      'api::barometer-sensor.barometer-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const radiationSensors = null;
+
+    const humiditySensors = (await getSensors(
+      'api::humidity-sensor.humidity-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    )).map((sensor: {unit: string}) => {
+      if (sensor.unit === 'percents') {
+        sensor.unit = '%';
+      }
+      return sensor;
+    });
+
+    const beverageSupplySensors = await getSensors(
+      'api::beverage-supply.beverage-supply',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const powerConsumptionSensors = await getSensors(
+      'api::power-consumption-sensor.power-consumption-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const powerGenerationSensors = await getSensors(
+      'api::power-generation-sensor.power-generation-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const windSensors = await getSensors(
+      'api::wind-sensor.wind-sensor',
+      [
+        'TODO',
+        'properties',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const networkConnectionsSensors = (await getSensors(
+      'api::network-connections-sensor.network-connections-sensor',
+      [
+        'location',
+        'name',
+        'description',
+        'lastchange',
+        'machines',
+      ],
+      [
+        'machines',
+      ],
+    )).map((connection: {machines: Array<{name?: string, mac?: string}>}) => {
+      if (!isEmpty(connection.machines)) {
+        connection.machines = connection.machines.map(pickFields([
+          'name',
+          'mac',
+        ]));
+      }
+      return connection;
+    });
+
+    const accountBalanceSensors = await getSensors(
+      'api::account-balance-sensor.account-balance-sensor',
+      [
+        'value',
+        'unit',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const totalMemberCountSensors = await getSensors(
+      'api::total-member-count-sensor.total-member-count-sensor',
+      [
+        'value',
+        'location',
+        'name',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const peopleNowPresentSensors = await getSensors(
+      'api::people-now-present-sensor.people-now-present-sensor',
+      [
+        'TODO',
+        'value',
+        'location',
+        'name',
+        'names',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const networkTrafficSensors = await getSensors(
+      'api::network-traffic-sensor.network-traffic-sensor',
+      [
+        'TODO',
+        'properties',
+        'value',
+        'location',
+        'name',
+        'names',
+        'description',
+        'lastchange',
+      ],
+    );
+
+    const sensors = {
+      temperature: temperatureSensors,
+      carbondioxide: carbondioxideSensors,
+      door_locked: doorLockedSensors,
+      barometer: barometerSensors,
+      radiation: radiationSensors,
+      humidity: humiditySensors,
+      beverage_supply: beverageSupplySensors,
+      power_consumption: powerConsumptionSensors,
+      power_generation: powerGenerationSensors,
+      wind: windSensors,
+      network_connections: networkConnectionsSensors,
+      account_balance: accountBalanceSensors,
+      total_member_count: totalMemberCountSensors,
+      people_now_present: peopleNowPresentSensors,
+      network_traffic: networkTrafficSensors,
+    }
+
+
+    if (Object.entries(sensors).some(([_, sensor]) => !isEmpty(sensor))) {
+      console.log(sensors)
+      result.sensors = pickFields(Object.keys(sensors))(sensors)
+    }
 
     /* */
 
