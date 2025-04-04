@@ -318,15 +318,13 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'machines',
       ],
     )).map((sensor: {machines: Array<{name?: string, mac?: string}>}) => {
-      if (!isEmpty(sensor.machines)) {
-        sensor.machines = sensor.machines.map(pickFields([
-          'name',
-          'mac',
-        ]));
-      } else {
-        delete sensor.machines;
-      }
-      return sensor;
+      const { machines, ...rest } = sensor;
+      return {
+        ...rest,
+        ...(isEmpty(machines)
+          ? {}
+          : { machines: machines.map(pickFields(['name', 'mac'])) }),
+      };
     });
 
     const accountBalanceSensors = await getSensors(
@@ -365,13 +363,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'names',
       ],
-    )).map((sensor: {names: Array<any>}) => {
-      if (!isEmpty(sensor.names)) {
-        sensor.names = sensor.names.map((x) => x['name']);
-      } else {
-        delete sensor.names;
-      }
-      return sensor
+    )).map((sensor: { names: Array<any> }) => {
+      const { names, ...rest } = sensor;
+      return {
+        ...rest,
+        ...(isEmpty(names)
+          ? {}
+          : { names: names.map((x) => x.name) }),
+      };
     });
 
     const networkTrafficSensors = (await getSensors(
