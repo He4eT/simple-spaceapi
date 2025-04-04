@@ -267,11 +267,12 @@ export interface StateStateIcon extends Struct.ComponentSchema {
 export interface WindDirection extends Struct.ComponentSchema {
   collectionName: 'components_wind_directions';
   info: {
+    description: '';
     displayName: 'Direction';
     icon: 'feather';
   };
   attributes: {
-    unit: Schema.Attribute.Enumeration<['Degree']> & Schema.Attribute.Required;
+    unit: Schema.Attribute.Enumeration<['degree']> & Schema.Attribute.Required;
     value: Schema.Attribute.Decimal & Schema.Attribute.Required;
   };
 }

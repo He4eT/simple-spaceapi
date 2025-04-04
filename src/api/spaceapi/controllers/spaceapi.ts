@@ -312,7 +312,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ])(properties))
       .map(([k, {value, unit}]) => [k, {
         value,
-        unit: unit === 'Degree' ? '°' : unit,
+        unit: unit === 'degree' ? '°' : unit,
       }]);
 
       return {
