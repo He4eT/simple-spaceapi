@@ -421,7 +421,6 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
 
     if (Object.entries(sensors).some(([_, sensor]) => !isEmpty(sensor))) {
-      console.log(sensors)
       result.sensors = pickFields(Object.keys(sensors))(sensors)
     }
 
