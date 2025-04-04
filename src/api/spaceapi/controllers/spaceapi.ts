@@ -352,7 +352,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ],
     );
 
-    const peopleNowPresentSensors = await getSensors(
+    const peopleNowPresentSensors = (await getSensors(
       'api::people-now-present-sensor.people-now-present-sensor',
       [
         'value',
@@ -365,7 +365,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'names',
       ],
-    );
+    )).map((sensor: {names: Array<any>}) => {
+      if (!isEmpty(sensor.names)) {
+        sensor.names = sensor.names.map((x) => x['name']);
+      } else {
+        delete sensor.names;
+      }
+      return sensor
+    });
 
     const networkTrafficSensors = (await getSensors(
       'api::network-traffic-sensor.network-traffic-sensor',
