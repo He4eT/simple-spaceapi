@@ -12,14 +12,6 @@ const pickFields = (fields: Array<string>) => (obj: Record<string, unknown>): ob
     .filter(([k, _]) => fields.includes(k))
     .filter(([_, v]) => !isEmpty(v)));
 
-const processComponentField = (component: Record<string, any>, field: string, fields: string[]) => {
-  if (!isEmpty(component[field])) {
-    component[field] = pickFields(fields)(component[field]);
-  } else {
-    delete component[field];
-  }
-};
-
 const dateTimeToUnixtime = (updatedAt: string) => {
   const date = new Date(updatedAt);
   return Math.floor(date.getTime() / 1000);
@@ -388,16 +380,27 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'properties.bits_per_second',
         'properties.packets_per_second',
       ],
-    )).map((sensor: {properties: {bits_per_second: any, packets_per_second: any}}) => {
-      if (!isEmpty(sensor.properties)) {
-        const { properties } = sensor;
-        delete properties['id'];
-        processComponentField(properties, 'bits_per_second', ['value', 'maximum']);
-        processComponentField(properties, 'packets_per_second', ['value']);
-      } else {
-        delete sensor.properties;
-      }
-      return sensor;
+    )).map((sensor: { properties: { bits_per_second: any, packets_per_second: any } }) => {
+      const { properties, ...rest } = sensor;
+
+      const cleanProperties = isEmpty(properties)
+        ? {}
+        : Object.fromEntries(Object.entries(properties)
+          .filter(([_, v]) => !isEmpty(v))
+          .filter(([k, _]) => [
+            'bits_per_second',
+            'packets_per_second'
+          ].includes(k))
+          .map(([key, value]) => [key, {
+            'bits_per_second': pickFields(['value', 'maximum']),
+            'packets_per_second': pickFields(['value']),
+          }[key](value),
+          ]));
+
+      return {
+        ...rest,
+        ...(isEmpty(cleanProperties) ? {} : { properties: cleanProperties }),
+      };
     });
 
     const sensors = {
