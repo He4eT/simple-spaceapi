@@ -285,17 +285,43 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ],
     );
 
-    const windSensors = await getSensors(
+    const windSensors = (await getSensors(
       'api::wind-sensor.wind-sensor',
       [
-        'TODO',
         'properties',
         'location',
         'name',
         'description',
         'lastchange',
       ],
-    );
+      [
+        'properties.speed',
+        'properties.gust',
+        'properties.direction',
+        'properties.elevation',
+      ],
+    )).map((sensor: {properties: {bits_per_second: number, packets_per_second: number}}) => {
+      const { properties, ...rest } = sensor;
+
+      const propertiesEntries = Object.entries(pickFields([
+        'speed',
+        'gust',
+        'direction',
+        'elevation',
+      ])(properties))
+      .map(([k, {value, unit}]) => [k, {
+        value,
+        unit: unit === 'Degree' ? '°' : unit,
+      }]);
+
+      return {
+        ...rest,
+        ...(isEmpty(propertiesEntries)
+          ? {}
+          : { properties: Object.fromEntries(propertiesEntries) }
+        ),
+      };
+    });
 
     const networkConnectionsSensors = (await getSensors(
       'api::network-connections-sensor.network-connections-sensor',
