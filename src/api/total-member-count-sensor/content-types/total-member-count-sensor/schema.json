@@ -4,10 +4,11 @@
   "info": {
     "singularName": "total-member-count-sensor",
     "pluralName": "total-member-count-sensors",
-    "displayName": "Sensor: Total Member Count"
+    "displayName": "Sensor: Total Member Count",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "value": {

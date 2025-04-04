@@ -4,10 +4,11 @@
   "info": {
     "singularName": "account-balance-sensor",
     "pluralName": "account-balance-sensors",
-    "displayName": "Sensor: Account Balance"
+    "displayName": "Sensor: Account Balance",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "value": {

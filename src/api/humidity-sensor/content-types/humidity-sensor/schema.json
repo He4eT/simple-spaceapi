@@ -4,10 +4,11 @@
   "info": {
     "singularName": "humidity-sensor",
     "pluralName": "humidity-sensors",
-    "displayName": "Sensor: Humidity"
+    "displayName": "Sensor: Humidity",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "value": {

@@ -373,12 +373,13 @@ export interface ApiAccountBalanceSensorAccountBalanceSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'account_balance_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Account Balance';
     pluralName: 'account-balance-sensors';
     singularName: 'account-balance-sensor';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -614,12 +615,13 @@ export interface ApiHumiditySensorHumiditySensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'humidity_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Humidity';
     pluralName: 'humidity-sensors';
     singularName: 'humidity-sensor';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -729,7 +731,7 @@ export interface ApiPeopleNowPresentSensorPeopleNowPresentSensor
     singularName: 'people-now-present-sensor';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -945,12 +947,13 @@ export interface ApiTotalMemberCountSensorTotalMemberCountSensor
   extends Struct.CollectionTypeSchema {
   collectionName: 'total_member_count_sensors';
   info: {
+    description: '';
     displayName: 'Sensor: Total Member Count';
     pluralName: 'total-member-count-sensors';
     singularName: 'total-member-count-sensor';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
