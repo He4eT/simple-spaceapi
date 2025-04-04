@@ -12,6 +12,14 @@ const pickFields = (fields: Array<string>) => (obj: Record<string, unknown>): ob
     .filter(([k, _]) => fields.includes(k))
     .filter(([_, v]) => !isEmpty(v)));
 
+const processComponentField = (component: Record<string, any>, field: string, fields: string[]) => {
+  if (!isEmpty(component[field])) {
+    component[field] = pickFields(fields)(component[field]);
+  } else {
+    delete component[field];
+  }
+};
+
 const dateTimeToUnixtime = (updatedAt: string) => {
   const date = new Date(updatedAt);
   return Math.floor(date.getTime() / 1000);
@@ -347,13 +355,15 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     const peopleNowPresentSensors = await getSensors(
       'api::people-now-present-sensor.people-now-present-sensor',
       [
-        'TODO',
         'value',
         'location',
         'name',
         'names',
         'description',
         'lastchange',
+      ],
+      [
+        'names',
       ],
     );
 
@@ -374,23 +384,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ],
     )).map((sensor: {properties: {bits_per_second: any, packets_per_second: any}}) => {
       if (!isEmpty(sensor.properties)) {
-        delete sensor.properties['id'];
-        if (!isEmpty(sensor.properties.bits_per_second)) {
-          sensor.properties.bits_per_second = pickFields([
-            'value',
-            'maximum',
-          ])(sensor.properties.bits_per_second);
-        } else {
-          delete sensor.properties.bits_per_second;
-        }
-
-        if (!isEmpty(sensor.properties.packets_per_second)) {
-          sensor.properties.packets_per_second = pickFields([
-            'value',
-          ])(sensor.properties.packets_per_second);
-        } else {
-          delete sensor.properties.packets_per_second;
-        }
+        const { properties } = sensor;
+        delete properties['id'];
+        processComponentField(properties, 'bits_per_second', ['value', 'maximum']);
+        processComponentField(properties, 'packets_per_second', ['value']);
       } else {
         delete sensor.properties;
       }
