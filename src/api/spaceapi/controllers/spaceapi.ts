@@ -1,16 +1,18 @@
 import type { Core, UID } from '@strapi/strapi';
 import type { Context } from 'koa';
 
-const isEmpty = <A>(x: A): boolean => x == null
-  ? true
-  : Object.keys(x).length === 0
-    ? String(x).length === 0
-    : false;
+const isEmpty = <A>(x: A): boolean =>
+  x == null
+    ? true
+    : Object.keys(x).length === 0
+      ? String(x).length === 0
+      : false;
 
-const pickFields = (fields: Array<string>) => (obj: Record<string, unknown>): object =>
-  Object.fromEntries(Object.entries(obj)
-    .filter(([k, _]) => fields.includes(k))
-    .filter(([_, v]) => !isEmpty(v)));
+const pickFields = (fields: Array<string>) =>
+  (obj: Record<string, unknown>): object =>
+    Object.fromEntries(Object.entries(obj)
+      .filter(([k, _]) => fields.includes(k))
+      .filter(([_, v]) => !isEmpty(v)));
 
 const dateTimeToUnixtime = (updatedAt: string) => {
   const date = new Date(updatedAt);
@@ -29,24 +31,26 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     const hackspace = await strapi
       .documents('api::hackspace.hackspace')
-      .findFirst({ populate: [
-        'logo',
-        'location',
-        'location.areas',
-        'spacefed',
-        'cam',
-        'contact',
-        'contact.keymasters',
-        'feeds',
-        'feeds.blog',
-        'feeds.wiki',
-        'feeds.calendar',
-        'feeds.flickr',
-        'projects',
-        'links',
-        'membership_plans',
-        'linked_spaces',
-      ]});
+      .findFirst({
+        populate: [
+          'logo',
+          'location',
+          'location.areas',
+          'spacefed',
+          'cam',
+          'contact',
+          'contact.keymasters',
+          'feeds',
+          'feeds.blog',
+          'feeds.wiki',
+          'feeds.calendar',
+          'feeds.flickr',
+          'projects',
+          'links',
+          'membership_plans',
+          'linked_spaces',
+        ],
+      });
 
     result.api_compatibility = ['15'];
     result.space = hackspace.space;
@@ -82,7 +86,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     if (!isEmpty(hackspace.cam)) {
       result.cam = hackspace.cam
-        .map(({url}) => url);
+        .map(({ url }) => url);
     }
 
     /* */
@@ -242,7 +246,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'description',
         'lastchange',
       ],
-    )).map((sensor: {unit: string}) => {
+    )).map((sensor: { unit: string }) => {
       const { unit, ...rest } = sensor;
       return {
         ...rest,
@@ -301,7 +305,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'properties.direction',
         'properties.elevation',
       ],
-    )).map((sensor: {properties: {bits_per_second: number, packets_per_second: number}}) => {
+    )).map((sensor: { properties: { bits_per_second: number, packets_per_second: number } }) => {
       const { properties, ...rest } = sensor;
 
       const propertiesEntries = Object.entries(pickFields([
@@ -310,7 +314,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'direction',
         'elevation',
       ])(properties))
-      .map(([k, {value, unit}]) => [k, {
+      .map(([k, { value, unit }]) => [k, {
         value,
         unit: unit === 'degree' ? '°' : unit,
       }]);
@@ -336,7 +340,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'machines',
       ],
-    )).map((sensor: {machines: Array<{name?: string, mac?: string}>}) => {
+    )).map((sensor: { machines: Array<{ name?: string, mac?: string }> }) => {
       const { machines, ...rest } = sensor;
       return {
         ...rest,
@@ -382,7 +386,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       [
         'names',
       ],
-    )).map((sensor: { names: Array<{name: string}> }) => {
+    )).map((sensor: { names: Array<{ name: string }> }) => {
       const { names, ...rest } = sensor;
       return {
         ...rest,
@@ -407,7 +411,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'properties.bits_per_second',
         'properties.packets_per_second',
       ],
-    )).map((sensor: {properties: {bits_per_second: number, packets_per_second: number}}) => {
+    )).map((sensor: { properties: { bits_per_second: number, packets_per_second: number } }) => {
       const { properties, ...rest } = sensor;
 
       const propertiesEntries = Object.entries(pickFields([
@@ -446,7 +450,6 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       network_traffic: networkTrafficSensors,
     };
 
-
     if (Object.entries(sensors).some(([_, sensor]) => !isEmpty(sensor))) {
       result.sensors = pickFields(Object.keys(sensors))(sensors);
     }
@@ -474,7 +477,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     if (!isEmpty(hackspace.projects)) {
       result.projects = hackspace.projects
-        .map(({url}) => url);
+        .map(({ url }) => url);
     }
 
     /* */
