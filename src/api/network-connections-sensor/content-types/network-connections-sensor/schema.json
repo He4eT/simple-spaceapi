@@ -13,11 +13,7 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": [
-        "wifi",
-        "cable",
-        "spacenet"
-      ]
+      "enum": ["wifi", "cable", "spacenet"]
     },
     "value": {
       "type": "integer",

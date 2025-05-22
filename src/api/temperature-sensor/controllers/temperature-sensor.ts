@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api::temperature-sensor.temperature-sensor');
+export default factories.createCoreController(
+  'api::temperature-sensor.temperature-sensor',
+);

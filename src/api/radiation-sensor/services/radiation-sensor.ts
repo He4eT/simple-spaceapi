@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreService('api::radiation-sensor.radiation-sensor');
+export default factories.createCoreService(
+  'api::radiation-sensor.radiation-sensor',
+);

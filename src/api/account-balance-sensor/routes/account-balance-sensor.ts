@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreRouter('api::account-balance-sensor.account-balance-sensor');
+export default factories.createCoreRouter(
+  'api::account-balance-sensor.account-balance-sensor',
+);

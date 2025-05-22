@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api::door-locked-sensor.door-locked-sensor');
+export default factories.createCoreController(
+  'api::door-locked-sensor.door-locked-sensor',
+);

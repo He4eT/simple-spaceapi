@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api::beverage-supply.beverage-supply');
+export default factories.createCoreController(
+  'api::beverage-supply.beverage-supply',
+);

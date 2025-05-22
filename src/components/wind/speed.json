@@ -12,11 +12,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "m/s",
-        "km/h",
-        "kn"
-      ],
+      "enum": ["m/s", "km/h", "kn"],
       "required": true
     }
   }

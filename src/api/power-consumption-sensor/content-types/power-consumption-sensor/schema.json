@@ -17,10 +17,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "W",
-        "VA"
-      ],
+      "enum": ["W", "VA"],
       "required": true
     },
     "location": {

@@ -13,9 +13,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "degree"
-      ],
+      "enum": ["degree"],
       "required": true
     }
   }

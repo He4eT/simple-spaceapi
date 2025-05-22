@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api::total-member-count-sensor.total-member-count-sensor');
+export default factories.createCoreController(
+  'api::total-member-count-sensor.total-member-count-sensor',
+);

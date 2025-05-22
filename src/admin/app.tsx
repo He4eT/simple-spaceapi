@@ -1,6 +1,6 @@
 import type { StrapiApp } from '@strapi/strapi/admin';
 
-function applyCustomCSS () {
+function applyCustomCSS() {
   const customCSS = `
     * {
       border-radius: 0 !important;

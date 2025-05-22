@@ -17,10 +17,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "btl",
-        "crt"
-      ],
+      "enum": ["btl", "crt"],
       "required": true
     },
     "location": {

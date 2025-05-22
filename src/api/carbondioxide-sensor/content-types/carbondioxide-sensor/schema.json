@@ -17,10 +17,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "ppm",
-        "vol%"
-      ],
+      "enum": ["ppm", "vol%"],
       "required": true
     },
     "location": {

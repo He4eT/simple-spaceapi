@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreRouter('api::network-traffic-sensor.network-traffic-sensor');
+export default factories.createCoreRouter(
+  'api::network-traffic-sensor.network-traffic-sensor',
+);

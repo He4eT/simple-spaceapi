@@ -12,9 +12,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "m"
-      ],
+      "enum": ["m"],
       "required": true
     }
   }

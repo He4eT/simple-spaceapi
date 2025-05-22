@@ -13,12 +13,7 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": [
-        "alpha",
-        "beta",
-        "gamma",
-        "beta_gamma"
-      ]
+      "enum": ["alpha", "beta", "gamma", "beta_gamma"]
     },
     "value": {
       "type": "decimal",
@@ -26,13 +21,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "cpm",
-        "r/h",
-        "µSv/h",
-        "mSv/a",
-        "µSv/a"
-      ],
+      "enum": ["cpm", "r/h", "µSv/h", "mSv/a", "µSv/a"],
       "required": true
     },
     "dead_time": {

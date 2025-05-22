@@ -17,16 +17,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": [
-        "°C",
-        "°F",
-        "K",
-        "°De",
-        "°N",
-        "°R",
-        "°Ré",
-        "°Rø"
-      ],
+      "enum": ["°C", "°F", "K", "°De", "°N", "°R", "°Ré", "°Rø"],
       "required": true
     },
     "location": {
