@@ -305,7 +305,15 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       network_connections: (
         await getSensors(
           'api::network-connections-sensor.network-connections-sensor',
-          ['location', 'name', 'description', 'lastchange', 'machines'],
+          [
+            'type',
+            'value',
+            'machines',
+            'location',
+            'name',
+            'description',
+            'lastchange',
+          ],
           ['machines'],
         )
       ).map((sensor: { machines: Array<{ name?: string; mac?: string }> }) => {
@@ -350,7 +358,11 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
             'description',
             'lastchange',
           ],
-          ['properties', 'properties.bits_per_second', 'properties.packets_per_second'],
+          [
+            'properties',
+            'properties.bits_per_second',
+            'properties.packets_per_second',
+          ],
         )
       ).map(
         (sensor: {
