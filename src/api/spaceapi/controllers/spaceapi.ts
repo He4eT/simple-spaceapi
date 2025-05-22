@@ -192,297 +192,266 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         .map(pickFields(fields))
       );
 
-    const temperatureSensors = await getSensors(
-      'api::temperature-sensor.temperature-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const carbondioxideSensors = await getSensors(
-      'api::carbondioxide-sensor.carbondioxide-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const doorLockedSensors = await getSensors(
-      'api::door-locked-sensor.door-locked-sensor',
-      [
-        'value',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const barometerSensors = await getSensors(
-      'api::barometer-sensor.barometer-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const radiationSensors = await (async () => {
-      const types = [
-        'alpha',
-        'beta',
-        'gamma',
-        'beta_gamma',
-      ]
-
-      const sensors = await getSensorsRaw(
-        'api::radiation-sensor.radiation-sensor',
-      )
-
-      const draft = Object.fromEntries(types.map((type) => [
-        type,
-        sensors
-        .filter((sensor: { type: string }) =>
-          sensor.type === type)
-        .map(pickFields([
+    const sensors = {
+      temperature: await getSensors(
+        'api::temperature-sensor.temperature-sensor',
+        [
           'value',
           'unit',
-          'dead_time',
-          'conversion_factor',
           'location',
           'name',
           'description',
           'lastchange',
-        ]))
-      ]))
+        ]
+      ),
+      carbondioxide: await getSensors(
+        'api::carbondioxide-sensor.carbondioxide-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      door_locked: await getSensors(
+        'api::door-locked-sensor.door-locked-sensor',
+        [
+          'value',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      barometer: await getSensors(
+        'api::barometer-sensor.barometer-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      radiation: await (async () => {
+        const types = [
+          'alpha',
+          'beta',
+          'gamma',
+          'beta_gamma',
+        ];
 
-      return pickFields(types)(draft)
-    })()
+        const sensors = await getSensorsRaw(
+          'api::radiation-sensor.radiation-sensor'
+        );
 
-    const humiditySensors = (await getSensors(
-      'api::humidity-sensor.humidity-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    )).map((sensor: { unit: string }) => {
-      const { unit, ...rest } = sensor;
-      return {
-        ...rest,
-        unit: unit === 'percents' ? '%' : unit,
-      };
-    });
+        const draft = Object.fromEntries(types.map((type) => [
+          type,
+          sensors
+          .filter((sensor: { type: string; }) => sensor.type === type)
+          .map(pickFields([
+            'value',
+            'unit',
+            'dead_time',
+            'conversion_factor',
+            'location',
+            'name',
+            'description',
+            'lastchange',
+          ]))
+        ]));
 
-    const beverageSupplySensors = await getSensors(
-      'api::beverage-supply.beverage-supply',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
+        return pickFields(types)(draft);
+      })(),
+      humidity: (await getSensors(
+        'api::humidity-sensor.humidity-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      )).map((sensor: { unit: string; }) => {
+        const { unit, ...rest } = sensor;
+        return {
+          ...rest,
+          unit: unit === 'percents' ? '%' : unit,
+        };
+      }),
+      beverage_supply: await getSensors(
+        'api::beverage-supply.beverage-supply',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      power_consumption: await getSensors(
+        'api::power-consumption-sensor.power-consumption-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      power_generation: await getSensors(
+        'api::power-generation-sensor.power-generation-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      wind: (await getSensors(
+        'api::wind-sensor.wind-sensor',
+        [
+          'properties',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ],
+        [
+          'properties.speed',
+          'properties.gust',
+          'properties.direction',
+          'properties.elevation',
+        ]
+      )).map((sensor: { properties: { bits_per_second: number; packets_per_second: number; }; }) => {
+        const { properties, ...rest } = sensor;
 
-    const powerConsumptionSensors = await getSensors(
-      'api::power-consumption-sensor.power-consumption-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
+        const propertiesEntries = Object.entries(pickFields([
+          'speed',
+          'gust',
+          'direction',
+          'elevation',
+        ])(properties))
+        .map(([k, { value, unit }]) => [k, {
+          value,
+          unit: unit === 'degree' ? '°' : unit,
+        }]);
 
-    const powerGenerationSensors = await getSensors(
-      'api::power-generation-sensor.power-generation-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
+        return {
+          ...rest,
+          ...(isEmpty(propertiesEntries)
+            ? {}
+            : { properties: Object.fromEntries(propertiesEntries) }
+          ),
+        };
+      }),
+      network_connections: (await getSensors(
+        'api::network-connections-sensor.network-connections-sensor',
+        [
+          'location',
+          'name',
+          'description',
+          'lastchange',
+          'machines',
+        ],
+        [
+          'machines',
+        ]
+      )).map((sensor: { machines: Array<{ name?: string; mac?: string; }>; }) => {
+        const { machines, ...rest } = sensor;
+        return {
+          ...rest,
+          ...(isEmpty(machines)
+            ? {}
+            : { machines: machines.map(pickFields(['name', 'mac'])) }),
+        };
+      }),
+      account_balance: await getSensors(
+        'api::account-balance-sensor.account-balance-sensor',
+        [
+          'value',
+          'unit',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      total_member_count: await getSensors(
+        'api::total-member-count-sensor.total-member-count-sensor',
+        [
+          'value',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]
+      ),
+      people_now_present: (await getSensors(
+        'api::people-now-present-sensor.people-now-present-sensor',
+        [
+          'value',
+          'location',
+          'name',
+          'names',
+          'description',
+          'lastchange',
+        ],
+        [
+          'names',
+        ]
+      )).map((sensor: { names: Array<{ name: string; }>; }) => {
+        const { names, ...rest } = sensor;
+        return {
+          ...rest,
+          ...(isEmpty(names)
+            ? {}
+            : { names: names.map((x) => x.name) }),
+        };
+      }),
+      network_traffic: (await getSensors(
+        'api::network-traffic-sensor.network-traffic-sensor',
+        [
+          'properties',
+          'value',
+          'location',
+          'name',
+          'names',
+          'description',
+          'lastchange',
+        ],
+        [
+          'properties.bits_per_second',
+          'properties.packets_per_second',
+        ]
+      )).map((sensor: { properties: { bits_per_second: number; packets_per_second: number; }; }) => {
+        const { properties, ...rest } = sensor;
 
-    const windSensors = (await getSensors(
-      'api::wind-sensor.wind-sensor',
-      [
-        'properties',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-      [
-        'properties.speed',
-        'properties.gust',
-        'properties.direction',
-        'properties.elevation',
-      ],
-    )).map((sensor: { properties: { bits_per_second: number, packets_per_second: number } }) => {
-      const { properties, ...rest } = sensor;
+        const propertiesEntries = Object.entries(pickFields([
+          'bits_per_second',
+          'packets_per_second',
+        ])(properties))
+        .map(([k, v]) => [k, {
+          'bits_per_second': pickFields(['value', 'maximum']),
+          'packets_per_second': pickFields(['value']),
+        }[k](v)]);
 
-      const propertiesEntries = Object.entries(pickFields([
-        'speed',
-        'gust',
-        'direction',
-        'elevation',
-      ])(properties))
-      .map(([k, { value, unit }]) => [k, {
-        value,
-        unit: unit === 'degree' ? '°' : unit,
-      }]);
-
-      return {
-        ...rest,
-        ...(isEmpty(propertiesEntries)
-          ? {}
-          : { properties: Object.fromEntries(propertiesEntries) }
-        ),
-      };
-    });
-
-    const networkConnectionsSensors = (await getSensors(
-      'api::network-connections-sensor.network-connections-sensor',
-      [
-        'location',
-        'name',
-        'description',
-        'lastchange',
-        'machines',
-      ],
-      [
-        'machines',
-      ],
-    )).map((sensor: { machines: Array<{ name?: string, mac?: string }> }) => {
-      const { machines, ...rest } = sensor;
-      return {
-        ...rest,
-        ...(isEmpty(machines)
-          ? {}
-          : { machines: machines.map(pickFields(['name', 'mac'])) }),
-      };
-    });
-
-    const accountBalanceSensors = await getSensors(
-      'api::account-balance-sensor.account-balance-sensor',
-      [
-        'value',
-        'unit',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const totalMemberCountSensors = await getSensors(
-      'api::total-member-count-sensor.total-member-count-sensor',
-      [
-        'value',
-        'location',
-        'name',
-        'description',
-        'lastchange',
-      ],
-    );
-
-    const peopleNowPresentSensors = (await getSensors(
-      'api::people-now-present-sensor.people-now-present-sensor',
-      [
-        'value',
-        'location',
-        'name',
-        'names',
-        'description',
-        'lastchange',
-      ],
-      [
-        'names',
-      ],
-    )).map((sensor: { names: Array<{ name: string }> }) => {
-      const { names, ...rest } = sensor;
-      return {
-        ...rest,
-        ...(isEmpty(names)
-          ? {}
-          : { names: names.map((x) => x.name) }),
-      };
-    });
-
-    const networkTrafficSensors = (await getSensors(
-      'api::network-traffic-sensor.network-traffic-sensor',
-      [
-        'properties',
-        'value',
-        'location',
-        'name',
-        'names',
-        'description',
-        'lastchange',
-      ],
-      [
-        'properties.bits_per_second',
-        'properties.packets_per_second',
-      ],
-    )).map((sensor: { properties: { bits_per_second: number, packets_per_second: number } }) => {
-      const { properties, ...rest } = sensor;
-
-      const propertiesEntries = Object.entries(pickFields([
-        'bits_per_second',
-        'packets_per_second',
-      ])(properties))
-      .map(([k, v]) => [k, {
-        'bits_per_second': pickFields(['value', 'maximum']),
-        'packets_per_second': pickFields(['value']),
-      }[k](v)]);
-
-      return {
-        ...rest,
-        ...(isEmpty(propertiesEntries)
-          ? {}
-          : { properties: Object.fromEntries(propertiesEntries) }
-        ),
-      };
-    });
-
-    const sensors = {
-      temperature: temperatureSensors,
-      carbondioxide: carbondioxideSensors,
-      door_locked: doorLockedSensors,
-      barometer: barometerSensors,
-      radiation: radiationSensors,
-      humidity: humiditySensors,
-      beverage_supply: beverageSupplySensors,
-      power_consumption: powerConsumptionSensors,
-      power_generation: powerGenerationSensors,
-      wind: windSensors,
-      network_connections: networkConnectionsSensors,
-      account_balance: accountBalanceSensors,
-      total_member_count: totalMemberCountSensors,
-      people_now_present: peopleNowPresentSensors,
-      network_traffic: networkTrafficSensors,
+        return {
+          ...rest,
+          ...(isEmpty(propertiesEntries)
+            ? {}
+            : { properties: Object.fromEntries(propertiesEntries) }
+          ),
+        };
+      }),
     };
 
     if (Object.entries(sensors).some(([_, sensor]) => !isEmpty(sensor))) {
