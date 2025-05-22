@@ -1,6 +1,10 @@
 import type { Core, UID } from '@strapi/strapi';
 import type { Context } from 'koa';
 
+const SPACE_API_VERSION = '15';
+
+/* Utils */
+
 const isEmpty = <A>(x: A): boolean =>
   x == null
     ? true
@@ -22,12 +26,17 @@ const dateTimeToUnixtime = (updatedAt: string) => {
   return Math.floor(date.getTime() / 1000);
 };
 
+const absoluteURL = (origin: string) => (url: string) =>
+  url ? `${origin}${url}` : null;
+
+/* */
+
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async index(ctx: Context) {
-    const absoluteURL = (url: string) =>
-      url ? `${ctx.request.origin}${url}` : null;
+    const origin = ctx.request.origin;
 
     const result = {} as Record<string, any>;
+    result.api_compatibility = [SPACE_API_VERSION];
 
     /* */
 
@@ -54,9 +63,8 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         ],
       });
 
-    result.api_compatibility = ['15'];
     result.space = hackspace.space;
-    result.logo = absoluteURL(hackspace?.logo.url);
+    result.logo = absoluteURL(origin)(hackspace?.logo.url);
     result.url = hackspace.url;
 
     if (!isEmpty(hackspace.location)) {
@@ -99,8 +107,8 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
       if (!isEmpty(state.icon)) {
         result.state.icon = {
-          open: absoluteURL(state.icon?.open.url),
-          closed: absoluteURL(state.icon?.closed.url),
+          open: absoluteURL(origin)(state.icon?.open.url),
+          closed: absoluteURL(origin)(state.icon?.closed.url),
         };
       }
     }
