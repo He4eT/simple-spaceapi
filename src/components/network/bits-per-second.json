@@ -2,16 +2,17 @@
   "collectionName": "components_network_bits_per_seconds",
   "info": {
     "displayName": "Bits per Second",
-    "icon": "oneToOne"
+    "icon": "oneToOne",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "value": {
-      "type": "biginteger",
+      "type": "integer",
       "required": true
     },
     "maximum": {
-      "type": "biginteger"
+      "type": "integer"
     }
   }
 }

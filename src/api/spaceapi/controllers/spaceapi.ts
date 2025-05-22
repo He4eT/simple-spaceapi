@@ -350,7 +350,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
             'description',
             'lastchange',
           ],
-          ['properties.bits_per_second', 'properties.packets_per_second'],
+          ['properties', 'properties.bits_per_second', 'properties.packets_per_second'],
         )
       ).map(
         (sensor: {

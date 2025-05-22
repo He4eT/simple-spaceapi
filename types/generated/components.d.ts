@@ -201,12 +201,13 @@ export interface MembershipPlans extends Struct.ComponentSchema {
 export interface NetworkBitsPerSecond extends Struct.ComponentSchema {
   collectionName: 'components_network_bits_per_seconds';
   info: {
+    description: '';
     displayName: 'Bits per Second';
     icon: 'oneToOne';
   };
   attributes: {
-    maximum: Schema.Attribute.BigInteger;
-    value: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    maximum: Schema.Attribute.Integer;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
 
@@ -225,11 +226,12 @@ export interface NetworkMachine extends Struct.ComponentSchema {
 export interface NetworkPacketsPerSecond extends Struct.ComponentSchema {
   collectionName: 'components_network_packets_per_seconds';
   info: {
+    description: '';
     displayName: 'Packets per Second';
     icon: 'oneToOne';
   };
   attributes: {
-    value: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
 
