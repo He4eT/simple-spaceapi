@@ -176,7 +176,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     /* */
 
-    const getSensors = (query: UID.ContentType, fields: Array<string>, populate = []) =>
+    const getSensorsRaw = (query: UID.ContentType, populate = []): Promise<Object[]> =>
       strapi.documents(query)
       .findMany({ populate })
       .then((sensors) => sensors
@@ -184,6 +184,11 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           ...sensor,
           lastchange: dateTimeToUnixtime(String(sensor.updatedAt)),
         }))
+      );
+
+    const getSensors = (query: UID.ContentType, fields: Array<string>, populate = []) =>
+      getSensorsRaw(query, populate)
+      .then((sensors) => sensors
         .map(pickFields(fields))
       );
 
@@ -234,7 +239,37 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       ],
     );
 
-    const radiationSensors = null;
+    const radiationSensors = await (async () => {
+      const types = [
+        'alpha',
+        'beta',
+        'gamma',
+        'beta_gamma',
+      ]
+
+      const sensors = await getSensorsRaw(
+        'api::radiation-sensor.radiation-sensor',
+      )
+
+      const draft = Object.fromEntries(types.map((type) => [
+        type,
+        sensors
+        .filter((sensor: { type: string }) =>
+          sensor.type === type)
+        .map(pickFields([
+          'value',
+          'unit',
+          'dead_time',
+          'conversion_factor',
+          'location',
+          'name',
+          'description',
+          'lastchange',
+        ]))
+      ]))
+
+      return pickFields(types)(draft)
+    })()
 
     const humiditySensors = (await getSensors(
       'api::humidity-sensor.humidity-sensor',
