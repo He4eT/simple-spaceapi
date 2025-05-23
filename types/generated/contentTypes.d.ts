@@ -852,7 +852,8 @@ export interface ApiRadiationSensorRadiationSensor
     publishedAt: Schema.Attribute.DateTime;
     type: Schema.Attribute.Enumeration<
       ['alpha', 'beta', 'gamma', 'beta_gamma']
-    >;
+    > &
+      Schema.Attribute.Required;
     unit: Schema.Attribute.Enumeration<
       ['cpm', 'r/h', '\u00B5Sv/h', 'mSv/a', '\u00B5Sv/a']
     > &

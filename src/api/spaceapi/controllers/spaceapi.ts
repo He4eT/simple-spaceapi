@@ -67,6 +67,8 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     result.logo = absoluteURL(origin)(hackspace?.logo.url);
     result.url = hackspace.url;
 
+    /* */
+
     if (!isEmpty(hackspace.location)) {
       result.location = pickFields([
         'address',
@@ -84,11 +86,15 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       }
     }
 
+    /* */
+
     if (!isEmpty(hackspace.spacefed)) {
       result.spacefed = pickFields(['spacenet', 'spacesaml'])(
         hackspace.spacefed,
       );
     }
+
+    /* */
 
     if (!isEmpty(hackspace.cam)) {
       result.cam = hackspace.cam.map(({ url }) => url);
@@ -217,7 +223,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           'api::radiation-sensor.radiation-sensor',
         );
 
-        const draft = Object.fromEntries(
+        const typedSensors = Object.fromEntries(
           types.map((type) => [
             type,
             sensors
@@ -237,7 +243,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           ]),
         );
 
-        return pickFields(types)(draft);
+        return pickFields(types)(typedSensors);
       })(),
       humidity: (
         await getSensors('api::humidity-sensor.humidity-sensor', [

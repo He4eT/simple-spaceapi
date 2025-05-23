@@ -13,7 +13,8 @@
   "attributes": {
     "type": {
       "type": "enumeration",
-      "enum": ["alpha", "beta", "gamma", "beta_gamma"]
+      "enum": ["alpha", "beta", "gamma", "beta_gamma"],
+      "required": true
     },
     "value": {
       "type": "decimal",
