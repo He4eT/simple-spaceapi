@@ -369,7 +369,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         )
       ).map(
         (sensor: {
-          properties: { bits_per_second: number; packets_per_second: number };
+          properties: { bits_per_second: object; packets_per_second: object };
         }) => {
           const { properties, ...rest } = sensor;
 
