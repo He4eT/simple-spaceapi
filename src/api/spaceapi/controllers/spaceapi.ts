@@ -175,7 +175,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     const getSensorsRaw = (
       query: UID.ContentType,
       populate = [],
-    ): Promise<Object[]> =>
+    ): Promise<Array<object>> =>
       strapi
         .documents(query)
         .findMany({ populate })
@@ -278,36 +278,33 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           'api::wind-sensor.wind-sensor',
           ['properties', 'location', 'name', 'description', 'lastchange'],
           [
+            'properties',
             'properties.speed',
             'properties.gust',
             'properties.direction',
             'properties.elevation',
           ],
         )
-      ).map(
-        (sensor: {
-          properties: { bits_per_second: number; packets_per_second: number };
-        }) => {
-          const { properties, ...rest } = sensor;
+      ).map((sensor: { properties: Record<string, object> }) => {
+        const { properties, ...rest } = sensor;
 
-          const propertiesEntries = Object.entries(
-            pickFields(['speed', 'gust', 'direction', 'elevation'])(properties),
-          ).map(([k, { value, unit }]) => [
-            k,
-            {
-              value,
-              unit: unit === 'degree' ? '°' : unit,
-            },
-          ]);
+        const propertiesEntries = Object.entries(
+          pickFields(['speed', 'gust', 'direction', 'elevation'])(properties),
+        ).map(([k, { value, unit }]) => [
+          k,
+          {
+            value,
+            unit: unit === 'degree' ? '°' : unit,
+          },
+        ]);
 
-          return {
-            ...rest,
-            ...(isEmpty(propertiesEntries)
-              ? {}
-              : { properties: Object.fromEntries(propertiesEntries) }),
-          };
-        },
-      ),
+        return {
+          ...rest,
+          ...(isEmpty(propertiesEntries)
+            ? {}
+            : { properties: Object.fromEntries(propertiesEntries) }),
+        };
+      }),
       network_connections: (
         await getSensors(
           'api::network-connections-sensor.network-connections-sensor',
