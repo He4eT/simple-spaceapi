@@ -4,7 +4,7 @@ A simple [SpaceAPI](https://spaceapi.io/) server with web and REST interfaces.
 
 Built with Node.js using [Strapi](https://github.com/strapi/strapi).
 
-![Screenshot](/docs/images/Screenshot.png?raw=true)
+![Screenshot](/docs/images/screenshot-main.png?raw=true)
 
 ## Quick Start
 
