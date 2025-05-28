@@ -1,6 +1,7 @@
 # Simple SpaceAPI
 
-A lightweight [SpaceAPI](https://spaceapi.io/) server with both web and REST interfaces.
+A lightweight [SpaceAPI](https://spaceapi.io/) server
+with both web and REST interfaces.
 
 Built with Node.js and [Strapi](https://github.com/strapi/strapi).
 
@@ -33,17 +34,19 @@ npm run strapi routes:list
 
 ### API Tokens
 
-To update the data you need to obtain the API token.<br>
-You could define token's specific permissions in the admin panel.
+To update data, you need an API token.<br>
+Tokens can be generated and managed in the admin panel, under
+[Settings → API Tokens](http://localhost:1337/admin/settings/api-tokens).<br>
+You can also define token-specific permissions there.
 
-For additional details see
-[Strapi Tokens Documentation](https://docs.strapi.io/cms/features/api-tokens).
+For more details, see the
+[Strapi API Tokens Documentation](https://docs.strapi.io/cms/features/api-tokens).
 
 ### Examples
 
-Some [HTTPIe CLI](https://httpie.io/cli) requests here:
+Some example requests using the [HTTPie CLI](https://httpie.io/cli):
 
-#### Main SpaceAPI Endpoint
+#### Get the Main SpaceAPI Endpoint Info
 
 ```sh
 http GET http://localhost:1337/api/spaceapi
@@ -63,7 +66,7 @@ http PUT \
   }'
 ```
 
-#### Update the Sensor
+#### Update a Sensor
 
 ```sh
 API_TOKEN=your-token-here
@@ -88,52 +91,52 @@ http PUT \
 
 #### Timestamps
 
-Simple SpaceAPI not trying to be smart about timespamps
-so **any** successful update will affect the corresponded `lastchange` field.
+Simple SpaceAPI does not attempt to be smart about timestamps,
+so **any** successful request will update the corresponding `lastchange` field.
 
-For example if you set the hackspace state to "closed"
-and repeat the same request next day
-then `lastchange` will be overrided.
+For example, if you set the hackspace state to "closed"
+and repeat the **same request** the next day,
+the `lastchange` field will be updated.
 
 #### Validation
 
-While Simple SpaceAPI is trying to validate the data
-it's still possible to generate invalid SpaceAPI JSON.
+While Simple SpaceAPI performs basic data validation,
+it's still possible to produce invalid SpaceAPI JSON.
 
-Do not forget to check your endpoint with the
+Always validate your endpoint using the
 [SpaceAPI Validator](https://spaceapi.io/validator/).
 
 #### Units
 
-Due to the some Strapi limitations
-several sensor units should be replaced with aliases for API requests:
+Due to some Strapi limitations,
+certain sensor units must be replaced with aliases in API requests:
 
-- Humidity Sensor: use `percents` instead of `%`;
-- Wind Sensor: use `degree` instead of `°`;
+- Humidity Sensor: use `percents` instead of `%`
+- Wind Sensor: use `degree` instead of `°`
 
-Main SpaceAPI endpoint will show correct units.
+The main SpaceAPI endpoint will display the correct units.
 
-#### Shape of Sensors
+#### Sensor Structure
 
-While Simple SpaceAPI is trying to follow the SpaceAPI structure,
-some sensors shape is simplified:
+While Simple SpaceAPI follows the general SpaceAPI format,
+the internal structure of some sensors is simplified:
 
-- Nested `alpha`, `beta`, `gamma` and `beta_gamma` radiation sensors
-  were unified as generic `radiation` sensor.
-  Type of this sensor could be specified with `type` field.
+- Radiation sensors (`alpha`, `beta`, `gamma`, `beta_gamma`)
+  are unified into a single `radiation` type.
+  The exact subtype can be specified using the `type` field.
 
 ## Deployment
 
-TBD
+Coming soon.
 
 ## Resources
 
-### SpaceAPI Links
+### SpaceAPI
 
 - [SpaceAPI Schema Documentation](https://spaceapi.io/docs/)
 - [Dynamic Map](https://mapall.space/)
 
-### Strapi Links
+### Strapi
 
 - [Strapi Documentation](https://docs.strapi.io)
-- [Strapi Command Line Interface](https://docs.strapi.io/dev-docs/cli)
+- [Strapi CLI Reference](https://docs.strapi.io/dev-docs/cli)
