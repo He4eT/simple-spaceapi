@@ -1,14 +1,14 @@
 # Simple SpaceAPI
 
-A simple [SpaceAPI](https://spaceapi.io/) endpoint with web and REST interfaces.
-
-![Screenshot](/docs/images/Screenshot.png?raw=true)
+A simple [SpaceAPI](https://spaceapi.io/) server with web and REST interfaces.
 
 Built with Node.js using [Strapi](https://github.com/strapi/strapi).
 
+![Screenshot](/docs/images/Screenshot.png?raw=true)
+
 ## Quick Start
 
-Install dependencies and start in development mode (with auto-reload):
+Install dependencies and start the server in development mode:
 
 ```sh
 npm install
@@ -22,10 +22,10 @@ The main entry point is `./src/api/spaceapi/controllers/spaceapi.ts`.
 
 All the data for your endpoint could be added and modified
 with the [admin panel](http://localhost:1337/admin)
-or with the REST API endpoints.
+or with the REST API.
 
 You could use the [Strapi CLI](https://docs.strapi.io/cms/cli)
-to list all availible endpoints:
+to list all availible API endpoints:
 
 ```sh
 npm run strapi routes:list
