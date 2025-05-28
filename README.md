@@ -86,10 +86,10 @@ http PUT \
 
 ### Caveats
 
-#### Lastchange
+#### Timestamps
 
 Simple SpaceAPI not trying to be smart about timespamps
-so **any** successful update will affect this field.
+so **any** successful update will affect the corresponded `lastchange` field.
 
 For example if you set the hackspace state to "closed"
 and repeat the same request next day
@@ -119,8 +119,8 @@ While Simple SpaceAPI is trying to follow the SpaceAPI structure,
 some sensors shape is simplified:
 
 - Nested `alpha`, `beta`, `gamma` and `beta_gamma` radiation sensors
-  were unified as generic `radiation`.
-  Type of the sensor could be specified with `type` field.
+  were unified as generic `radiation` sensor.
+  Type of this sensor could be specified with `type` field.
 
 ## Deployment
 
