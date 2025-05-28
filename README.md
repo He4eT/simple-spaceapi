@@ -63,12 +63,12 @@ http PUT \
   }'
 ```
 
-#### Update the Sensors
+#### Update the Sensor
 
 ```sh
 API_TOKEN=your-token-here
 
-# Discover the documentId for the sensor
+# Discover the `documentId` for the Sensor
 http GET \
   http://localhost:1337/api/temperature-sensors \
   Authorization:"Bearer $API_TOKEN"
