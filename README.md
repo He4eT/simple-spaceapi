@@ -43,7 +43,7 @@ For additional explanation see
 
 Some [HTTPIe CLI](https://httpie.io/cli) requests here:
 
-#### Get SpaceAPI Info
+#### Main SpaceAPI Endpoint
 
 ```sh
 http GET http://localhost:1337/api/spaceapi
@@ -136,4 +136,4 @@ TBD
 ### Strapi Links
 
 - [Strapi Documentation](https://docs.strapi.io)
-- [STrapi Command Line Interface](https://docs.strapi.io/dev-docs/cli)
+- [Strapi Command Line Interface](https://docs.strapi.io/dev-docs/cli)
