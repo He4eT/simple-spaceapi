@@ -20,12 +20,12 @@ The main entry point is `./src/api/spaceapi/controllers/spaceapi.ts`.
 
 ## Usage
 
-All the data for your endpoint could be added and modified
-with the [admin panel](http://localhost:1337/admin)
-or with the REST API.
+All endpoint data can be added or modified
+via the [admin panel](http://localhost:1337/admin)
+or through the REST API.
 
-You could use the [Strapi CLI](https://docs.strapi.io/cms/cli)
-to list all availible API endpoints:
+To list all available API endpoints,
+use the [Strapi CLI](https://docs.strapi.io/cms/cli):
 
 ```sh
 npm run strapi routes:list
