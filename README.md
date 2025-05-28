@@ -36,7 +36,7 @@ npm run strapi routes:list
 To update the data you need to obtain the API token.<br>
 You could define token's specific permissions in the admin panel.
 
-For additional explanation see
+For additional details see
 [Strapi Tokens Documentation](https://docs.strapi.io/cms/features/api-tokens).
 
 ### Examples
