@@ -8,4 +8,6 @@ services:
       - ./data/uploads:/app/public/uploads
     env_file:
       - .env
+    environment:                                                                  │
+      - PORT=1337                                                                 │
     restart: unless-stopped
