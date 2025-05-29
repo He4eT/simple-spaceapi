@@ -5,7 +5,7 @@ ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 COPY . .
 
