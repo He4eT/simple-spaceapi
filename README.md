@@ -160,7 +160,7 @@ will **override** those in the `.env` file.
 If you prefer to run the server without Docker, you can use Node.js directly.
 
 ```sh
-npm install --only=production
+npm install --omit=dev
 npm run build
 npm run start
 ```
