@@ -5,12 +5,13 @@ const SPACE_API_VERSION = '15';
 
 /* Utils */
 
-const isEmpty = <A>(x: A): boolean =>
-  x == null
-    ? true
-    : Object.keys(x).length === 0
-      ? String(x).length === 0
-      : false;
+const isEmpty = <A>(x: A): boolean => {
+  if (x == null) return true;
+  if (Array.isArray(x)) return x.length === 0;
+  if (typeof x === 'string') return x.trim().length === 0;
+  if (typeof x === 'object') return Object.keys(x).length === 0;
+  return false;
+};
 
 const pickFields =
   (fields: Array<string>) =>
@@ -63,9 +64,29 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         ],
       });
 
-    result.space = hackspace.space;
-    result.logo = absoluteURL(origin)(hackspace?.logo.url);
-    result.url = hackspace.url;
+    /* */
+
+    if (isEmpty(hackspace)) {
+      return {};
+    }
+
+    /* */
+
+    if (!isEmpty(hackspace.space)) {
+      result.space = hackspace.space;
+    }
+
+    /* */
+
+    if (!isEmpty(hackspace.logo)) {
+      result.logo = absoluteURL(origin)(hackspace.logo?.url);
+    }
+
+    /* */
+
+    if (!isEmpty(hackspace.url)) {
+      result.url = hackspace.url;
+    }
 
     /* */
 
@@ -136,7 +157,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     /* */
 
     if (!isEmpty(hackspace.contact)) {
-      result.contact = pickFields([
+      const contactDraft = pickFields([
         'phone',
         'sip',
         'irc',
@@ -153,6 +174,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         'matrix',
         'mumble',
       ])(hackspace.contact);
+
+      if (!isEmpty(contactDraft)) {
+        result.contact = contactDraft;
+      }
 
       if (!isEmpty(hackspace.contact.keymasters)) {
         result.contact.keymasters = hackspace.contact.keymasters.map(
