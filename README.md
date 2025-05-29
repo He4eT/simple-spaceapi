@@ -155,6 +155,20 @@ You can change this behavior by editing `docker-compose.yml` if needed.
 **Note**: Environment variables defined in `docker-compose.yml`
 will **override** those in the `.env` file.
 
+### Running with Node.js
+
+If you prefer to run the server without Docker, you can use Node.js directly.
+
+```sh
+npm install --only=production
+npm run build
+npm run start
+```
+
+By default, the server will be available at `http://0.0.0.0:1337/`.
+
+You can change this behavior by editing `.env` file if needed.
+
 ## Resources
 
 ### SpaceAPI
