@@ -127,7 +127,33 @@ the internal structure of some sensors is simplified:
 
 ## Deployment
 
-Coming soon.
+### Environment Variables
+
+Before running the production server,
+you need to configure environment variables.
+
+Start by copying the example file and editing it:
+
+```sh
+cp ./.env.example ./.env
+```
+
+### Running with Docker Compose
+
+Once the environment variables are set up,
+you can start the server using Docker Compose:
+
+```sh
+docker compose up --build
+```
+
+By default, the server will be available at `http://0.0.0.0:1337/`.
+The database and uploaded user files are stored in the `./data` directory.
+
+You can change this behavior by editing `docker-compose.yml` if needed.
+
+**Note**: Environment variables defined in `docker-compose.yml`
+will **override** those in the `.env` file.
 
 ## Resources
 
