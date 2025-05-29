@@ -183,7 +183,7 @@ npm run start
 
 By default, the server will be available at `http://0.0.0.0:1337/`.
 
-You can change this behavior by editing `.env` file if needed.
+You can change this behavior by editing the `.env` file if needed.
 
 ## Resources
 
