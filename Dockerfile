@@ -4,14 +4,11 @@ ENV PATH=/app/node_modules/.bin:$PATH
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package*.json .
 RUN npm ci --omit=dev
-
 COPY . .
-
-RUN chown -R node:node /app
-USER node
 RUN npm run build
 
-EXPOSE 1337
-CMD ["npm", "run", "start"]
+USER node
+
+CMD ["npm", "start"]
