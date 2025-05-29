@@ -56,6 +56,7 @@ http GET http://localhost:1337/api/spaceapi
 
 ```sh
 API_TOKEN=your-token-here
+
 http PUT \
   http://localhost:1337/api/state \
   Authorization:"Bearer $API_TOKEN" \
@@ -84,6 +85,21 @@ http PUT \
   data:='{
     "unit": "°C",
     "value": 25
+  }'
+```
+
+#### Add an Event
+
+```sh
+API_TOKEN=your-token-here
+
+http POST \
+  http://localhost:1337/api/events \
+  Authorization:"Bearer $API_TOKEN" \
+  data:='{
+    "name": "3D printer",
+    "type": "finish-print",
+    "extra": "Model: Evangelion Unit-01"
   }'
 ```
 
