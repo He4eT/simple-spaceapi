@@ -8,11 +8,4 @@ services:
       - ./data/uploads:/app/public/uploads
     env_file:
       - .env
-    environment:
-      - NODE_ENV=production
-      - HOST=0.0.0.0
-      - PORT=1337
-      - DATABASE_CLIENT=sqlite
-      - DATABASE_FILENAME=data/base/sqlite.db
-      - STRAPI_TELEMETRY_DISABLED=true
     restart: unless-stopped
