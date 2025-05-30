@@ -130,10 +130,10 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     if (!isEmpty(state)) {
       result.state = pickFields(['trigger_person', 'message'])(state);
 
-      if (['True', 'False'].includes(state.open)) {
+      if (['true', 'false'].includes(state.open)) {
         result.state.open = {
-          True: true,
-          False: false,
+          true: true,
+          false: false,
         }[state.open];
       }
 

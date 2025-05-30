@@ -885,7 +885,7 @@ export interface ApiStateState extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::state.state'> &
       Schema.Attribute.Private;
     message: Schema.Attribute.String;
-    open: Schema.Attribute.Enumeration<['True', 'False', 'Undefined']> &
+    open: Schema.Attribute.Enumeration<['true', 'false', 'undefined']> &
       Schema.Attribute.DefaultTo<'Undefined'>;
     publishedAt: Schema.Attribute.DateTime;
     trigger_person: Schema.Attribute.String;

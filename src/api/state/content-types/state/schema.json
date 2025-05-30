@@ -13,7 +13,7 @@
   "attributes": {
     "open": {
       "type": "enumeration",
-      "enum": ["True", "False", "Undefined"],
+      "enum": ["true", "false", "undefined"],
       "default": "Undefined"
     },
     "trigger_person": {
