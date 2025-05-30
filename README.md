@@ -141,6 +141,15 @@ the internal structure of some sensors is simplified:
   are unified into a single `radiation` type.
   The exact subtype can be specified using the `type` field.
 
+#### `state.open` Field
+
+While the SpaceAPI specification defines `state.open`
+as a boolean (`true` or `false`),
+Simple SpaceAPI expects string values: `"true"`, `"false"`, or `"undefined"`.
+
+Boolean values (`true`, `false`) are technically accepted
+and will be parsed correctly, but this behavior is not recommended.
+
 ## Deployment
 
 ### Environment Variables
