@@ -166,7 +166,8 @@ docker compose up --build
 By default, the server will be available at `http://0.0.0.0:1337/`.<br>
 The database and uploaded user files are stored in the `./data` directory.
 
-You can change this behavior by editing `docker-compose.yml` if needed.
+You can change this behavior by editing the `.env` file
+or the `docker-compose.yml` file, if needed.
 
 **Note**: Environment variables defined in `docker-compose.yml`
 will **override** those in the `.env` file.
@@ -183,7 +184,7 @@ npm run start
 
 By default, the server will be available at `http://0.0.0.0:1337/`.
 
-You can change this behavior by editing the `.env` file if needed.
+You can change this behavior by editing the `.env` file, if needed.
 
 ## Resources
 
