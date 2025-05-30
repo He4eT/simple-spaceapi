@@ -34,7 +34,7 @@ const absoluteURL = (origin: string) => (url: string) =>
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async index(ctx: Context) {
-    const origin = ctx.request.origin;
+    const origin = process.env.APP_URL ?? ctx.request.origin;
 
     const result = {} as Record<string, any>;
     result.api_compatibility = [SPACE_API_VERSION];
