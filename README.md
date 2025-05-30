@@ -61,7 +61,7 @@ http PUT \
   http://localhost:1337/api/state \
   Authorization:"Bearer $API_TOKEN" \
   data:='{
-    "open": true,
+    "open": "true",
     "trigger_person": "Owner",
     "message": "We are open!"
   }'
