@@ -12,8 +12,9 @@
   },
   "attributes": {
     "open": {
-      "type": "boolean",
-      "default": false
+      "type": "enumeration",
+      "enum": ["True", "False", "Undefined"],
+      "default": "Undefined"
     },
     "trigger_person": {
       "type": "string"

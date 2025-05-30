@@ -128,7 +128,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     });
 
     if (!isEmpty(state)) {
-      result.state = pickFields(['open', 'trigger_person', 'message'])(state);
+      result.state = pickFields(['trigger_person', 'message'])(state);
+
+      if (['True', 'False'].includes(state.open)) {
+        result.state.open = {
+          True: true,
+          False: false,
+        }[state.open];
+      }
 
       result.state.lastchange = dateTimeToUnixtime(String(state.updatedAt));
 
