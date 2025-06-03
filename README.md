@@ -34,8 +34,8 @@ npm run strapi routes:list
 
 ### API Tokens
 
-To update data, you need an API token.<br>
-Tokens can be generated and managed in the admin panel, under
+To update data using requests, you need an API token.<br>
+Tokens can be generated and managed in the admin panel under
 [Settings → API Tokens](http://localhost:1337/admin/settings/api-tokens).<br>
 You can also define token-specific permissions there.
 
