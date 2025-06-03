@@ -639,8 +639,7 @@ export interface ApiHumiditySensorHumiditySensor
     location: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    unit: Schema.Attribute.Enumeration<['percents']> &
-      Schema.Attribute.Required;
+    unit: Schema.Attribute.Enumeration<['percent']> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

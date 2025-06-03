@@ -127,7 +127,7 @@ Always validate your endpoint using the
 Due to some Strapi limitations,
 certain sensor units must be replaced with aliases in API requests:
 
-- Humidity Sensor: use `percents` instead of `%`
+- Humidity Sensor: use `percent` instead of `%`
 - Wind Sensor: use `degree` instead of `°`
 
 The main SpaceAPI endpoint will display the correct units.

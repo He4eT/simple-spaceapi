@@ -17,7 +17,7 @@
     },
     "unit": {
       "type": "enumeration",
-      "enum": ["percents"],
+      "enum": ["percent"],
       "required": true
     },
     "location": {

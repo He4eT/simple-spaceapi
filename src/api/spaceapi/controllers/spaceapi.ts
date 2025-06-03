@@ -290,7 +290,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
         const { unit, ...rest } = sensor;
         return {
           ...rest,
-          unit: unit === 'percents' ? '%' : unit,
+          unit: unit === 'percent' ? '%' : unit,
         };
       }),
       beverage_supply: await getSensors(
