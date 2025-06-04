@@ -21,6 +21,10 @@ The main entry point is `./src/api/spaceapi/controllers/spaceapi.ts`.
 
 ## Usage
 
+Just fill in the data according to the
+[Schema Documentation](https://spaceapi.io/docs/).
+Version 15 is implemented.
+
 All endpoint data can be added or modified
 via the [admin panel](http://localhost:1337/admin)
 or through the REST API.
