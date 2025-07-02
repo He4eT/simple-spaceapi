@@ -193,8 +193,17 @@ If you prefer to run the server without Docker, you can use Node.js directly.
 ```sh
 npm install --omit=dev
 npm run build
-npm install pm2@latest -g
-pm2 start nmp -- start 
+```
+
+It is recommended to run the server using PM2:
+```sh
+npm install pm2@latest --global
+pm2 start npm -- start
+```
+
+Alternatively, the application can be started directly with:
+```sh
+npm start
 ```
 
 By default, the server will be available at `http://0.0.0.0:1337/`.
